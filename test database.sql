@@ -2,7 +2,7 @@ CREATE DATABASE  IF NOT EXISTS `insys` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `insys`;
 -- MySQL dump 10.13  Distrib 5.5.16, for Win32 (x86)
 --
--- Host: localhost    Database: insys
+-- Host: 127.0.0.1    Database: insys
 -- ------------------------------------------------------
 -- Server version	5.5.28
 
@@ -280,4 +280,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2012-10-27 16:27:18
+-- Dump completed on 2012-10-30 15:57:43
