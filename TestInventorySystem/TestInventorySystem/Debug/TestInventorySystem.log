@@ -1,0 +1,12 @@
+﻿Build started 11/2/2012 2:23:31 PM.
+     1>Project "C:\Users\Michael\Documents\Visual Studio 2012\Projects\TestInventorySystem\TestInventorySystem\TestInventorySystem.vcxproj" on node 2 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\include" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\TestInventorySystem.pch" /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt unittest1.cpp
+         unittest1.cpp
+     1>c:\users\michael\documents\visual studio 2012\projects\testinventorysystem\testinventorysystem\unittest1.cpp(75): error C2664: 'Microsoft::VisualStudio::CppUnitTestFramework::Assert::Fail' : cannot convert parameter 1 from 'const char [5]' to 'const wchar_t *'
+                 Types pointed to are unrelated; conversion requires reinterpret_cast, C-style cast or function-style cast
+     1>Done Building Project "C:\Users\Michael\Documents\Visual Studio 2012\Projects\TestInventorySystem\TestInventorySystem\TestInventorySystem.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:00.19

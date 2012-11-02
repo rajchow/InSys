@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestInventorySystem", "TestInventorySystem\TestInventorySystem.vcxproj", "{4F66EDDC-DC43-4D5B-837A-3CF1F225C87E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4F66EDDC-DC43-4D5B-837A-3CF1F225C87E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4F66EDDC-DC43-4D5B-837A-3CF1F225C87E}.Debug|Win32.Build.0 = Debug|Win32
+		{4F66EDDC-DC43-4D5B-837A-3CF1F225C87E}.Release|Win32.ActiveCfg = Release|Win32
+		{4F66EDDC-DC43-4D5B-837A-3CF1F225C87E}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
