@@ -5,6 +5,19 @@
 
 class Category : public TableInterface
 {
+private:
+	string returnString;
+
+	ofstream categoryOutFile;
+	ifstream categoryInFile;
+	
+	string rowReceive;
+	string categoryID;
+	int delimiter;
+	int categoryIDTemp;
+	int catID;
+	char delim;
+
 public:
 	void add(vector<string> addVector);
 

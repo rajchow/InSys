@@ -29,14 +29,13 @@ namespace TestInventory
 		TEST_METHOD(TestCategoryAdd)
 		{
 			string categoryReturned;
-			string categoryExpected = "1 testDescription testName";
+			string categoryExpected = "1|testDescription|testName\n";
 
 			vector<string> catVector;
 			catVector.push_back("testDescription");
 			catVector.push_back("testName");
 
 			cat->add(catVector);
-			Logger::WriteMessage("test");
 
 			categoryReturned = cat->search("category_id", "1");
 			
