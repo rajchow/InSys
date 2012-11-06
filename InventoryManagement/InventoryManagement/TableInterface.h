@@ -9,19 +9,7 @@
 #include <stdexcept>
 #include <vector>
 
-/* MySQL Connector/C++ specific headers */
-#include <driver.h>
-#include <connection.h>
-#include <statement.h>
-#include <prepared_statement.h>
-#include <resultset.h>
-#include <metadata.h>
-#include <resultset_metadata.h>
-#include <exception.h>
-#include <warning.h>
-
 using namespace std;
-using namespace sql;
 
 class TableInterface
 {

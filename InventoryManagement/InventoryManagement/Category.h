@@ -5,12 +5,6 @@
 
 class Category : public TableInterface
 {
-private:
-	Driver *driver;
-	Connection *con;
-	Statement *stmt;
-	ResultSet *res;
-
 public:
 	void add(vector<string> addVector);
 

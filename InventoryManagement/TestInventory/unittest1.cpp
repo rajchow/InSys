@@ -36,13 +36,14 @@ namespace TestInventory
 			catVector.push_back("testName");
 
 			cat->add(catVector);
+			Logger::WriteMessage("test");
 
 			categoryReturned = cat->search("category_id", "1");
-
+			
 			const char *p;
 			p = categoryReturned.c_str();
 			Logger::WriteMessage(p);
-
+			
 			Assert::AreEqual(categoryExpected, categoryReturned);
 		}
 

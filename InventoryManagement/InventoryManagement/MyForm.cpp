@@ -1,6 +1,11 @@
 #include "MyForm.h"
+#include <Windows.h>
 
-int __stdcall WinMain()
+
+using namespace std;
+
+int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, 
+    LPSTR lpCmdLine, int nCmdShow)
 {
 	return 0;
 }
