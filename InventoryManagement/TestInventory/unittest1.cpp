@@ -18,12 +18,14 @@ namespace TestInventory
 
 	public:
 		
-		/// \brief Setup before each test method
+		/// \brief Setup before the Test class
 		///
 		/// - Sets cat to point to a Category table class
 		/// - Clears the Category table in the database and then adds data for testing
 		TEST_CLASS_INITIALIZE(setup)
 		{
+			Logger::WriteMessage("TEST_CLASS setup");
+
 			cat = new Category();
 			
 			ofstream ofstr;
@@ -37,15 +39,19 @@ namespace TestInventory
 			ofstr.close();
 		}
 
-		/// \brief Clean up function after test methods are run
+		/// \brief Clean up function after test class is run
 		TEST_CLASS_CLEANUP(teardown)
 		{
+			Logger::WriteMessage("TEST_CLASS cleanup");
+
 			delete cat;
 		}
 		
-		/// \brief Test class to test if Category can search by ID
+		/// \brief Test if Category can search by ID
 		TEST_METHOD(TestCategorySearchByCategoryID)
 		{
+			Logger::WriteMessage("TestCategorySearchByCategoryID");
+
 			// String to store value returned by Category::search
 			string categoryReturned;
 
@@ -54,80 +60,105 @@ namespace TestInventory
 			// Logs test name and returned values
 			const char *p;
 			p = categoryReturned.c_str();
-			Logger::WriteMessage("TestCategorySearchByCategoryID");
 			Logger::WriteMessage(p);
 
 			// Asserts what is expected with what is actually returned
 			Assert::AreEqual("2|ready for your enjoyment|hot foods\n", categoryReturned.c_str());
 		}
 
-		/// \brief Test class to test if Category can search by description
+		/// \brief Test if Category can search by description
 		TEST_METHOD(TestCategorySearchByDescription)
 		{
+			Logger::WriteMessage("TestCategorySearchByDescription");
+
 			string categoryReturned;
 
 			categoryReturned = cat->search("description", "underwater delicacies");
 
 			const char *p;
 			p = categoryReturned.c_str();
-			Logger::WriteMessage("TestCategorySearchByDescription");
 			Logger::WriteMessage(p);
 
 			Assert::AreEqual("3|underwater delicacies|seafood\n", categoryReturned.c_str());
 
 		}
 
-		/// \brief Test class to test if Category can search by name
+		/// \brief Test if Category can search by name
 		TEST_METHOD(TestCategorySearchByName)
 		{
+			Logger::WriteMessage("TestCategorySearchByName");
+
 			string categoryReturned;
 
 			categoryReturned = cat->search("name", "seafood");
 
 			const char *p;
 			p = categoryReturned.c_str();
-			Logger::WriteMessage("TestCategorySearchByName");
 			Logger::WriteMessage(p);
 
 			Assert::AreEqual("3|underwater delicacies|seafood\n", categoryReturned.c_str());
 
 		}
 
+		/// \brief Test if category can add a new data entry into category.txt
 		TEST_METHOD(TestCategoryAdd)
 		{
+			// identifies in the test log which test method is currently active
+			Logger::WriteMessage("TestCategoryAdd");
+
+			// string for the search return string
 			string categoryReturned;
+
+			// string containing the expected information to be received from the search
 			string categoryExpected = "4|testDescription|testName\n";
 
+			// vector to contain the information for the required columns for a new entry
 			vector<string> catVector;
+			// insertion of the test data into the vector to be passed as the argument for the add function
 			catVector.push_back("testDescription");
 			catVector.push_back("testName");
 
+			// calling the category add function
 			cat->add(catVector);
 
+			// calling the category seach function to ensure that the add function was successful
 			categoryReturned = cat->search("category_id", "4");
 			
+			// convert the returned string to a const char to output in the test log
 			const char *p;
 			p = categoryReturned.c_str();
-			Logger::WriteMessage("TestCategoryAdd");
 			Logger::WriteMessage(p);
 			
+			// assert that the return string matches the expected return string
+			// in this case the expected return is "4|testDescription|testName\n"
 			Assert::AreEqual(categoryExpected, categoryReturned);
 		}
 
+		/// \brief Test if category can delete a row of data from category.txt
 		TEST_METHOD(TestCategoryDelete)
 		{
+			// identifies in the test log which test method is currently active
+			Logger::WriteMessage("TestCategoryDelete");
+			
+			// string for the search return string
 			string returnedString;
+			
+			// string containing the expected information to be received from the search
 			string expectedString = "Category Does Not Exist";
 
-			cat->deleteRow("catergory_id","1");
+			// call the category delete function
+			cat->deleteRow("category_id","4");
 
-			returnedString = cat->search("category_id", "1");
-			
+			// call the category search function to ensure that the category was successfully deleted
+			returnedString = cat->search("category_id", "4");
+
+			// convert the returned string to a const char to output in the test log
 			const char *p;
 			p = returnedString.c_str();
-			Logger::WriteMessage("TestCategoryDelete");
 			Logger::WriteMessage(p);
 
+			// assert that the returned string matches the expected string
+			// in this case the expectation is "Category Does Not Exist"
 			Assert::AreEqual(expectedString,returnedString);
 		}
 
