@@ -51,6 +51,14 @@ namespace TestInventory
 			string returnedString;
 			string expectedString = "Category Does Not Exist";
 
+			cat->deleteRow("catergory_id","1");
+
+			returnedString = cat->search("category_id", "1");
+			
+			const char *p;
+			p = returnedString.c_str();
+			Logger::WriteMessage(p);
+
 			Assert::AreEqual(expectedString,returnedString);
 		}
 

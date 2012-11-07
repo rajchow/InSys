@@ -22,6 +22,8 @@ public:
 	void add(vector<string> addVector);
 
 	string search(string columnName, string valueToFind);
+
+	void deleteRow(string columnName, string valueToFind);
 };
 
 #endif

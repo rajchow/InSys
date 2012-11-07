@@ -59,8 +59,17 @@ string Category :: search(string columnName, string valueToFind)
 			}
 		}
 	}
-		categoryInFile.close();
+	categoryInFile.close();
 	
+	if(returnString.empty())
+	{
+		returnString = "Category Does Not Exist";
+	}
 
 	return returnString;
+}
+
+void Category :: deleteRow(string columnName, string valueToFind)
+{
+	delim = '|';
 }
