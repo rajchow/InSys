@@ -46,5 +46,13 @@ namespace TestInventory
 			Assert::AreEqual(categoryExpected, categoryReturned);
 		}
 
+		TEST_METHOD(TestCategoryDelete)
+		{
+			string returnedString;
+			string expectedString = "Category Does Not Exist";
+
+			Assert::AreEqual(expectedString,returnedString);
+		}
+
 	};
 }
