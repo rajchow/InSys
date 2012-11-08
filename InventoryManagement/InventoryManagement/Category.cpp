@@ -2,8 +2,23 @@
 
 void Category :: add(vector<string> addVector)
 {
+	// string to contain the contents of a row received from the file
+	string rowReceive;
+
+	// string to contain the category_ID from a received row of data
+	string categoryID;
+	
+	// ints to store the position of the first and second delimiters
+	int delimiter;
+
+	// int to store the category_ID while checking if it is the highest category_ID value used
+	int categoryIDTemp;
+
+	// int to store the category_ID to be used for adding data to the category.txt file
+	int catID;
+
 	// assign to char delim the | character as the desired delimiter
-	delim = '|';
+	char delim = '|';
 
 	// place the contents of the vector argument into strings descript and name
 	string descript = addVector[0];
@@ -65,8 +80,27 @@ void Category :: add(vector<string> addVector)
 
 string Category :: search(string columnName, string valueToFind)
 {
+	// string to be used to return the results of a search
+	string returnString;
+
+	// string to contain the contents of a row received from the file
+	string rowReceive;
+
+	// string to contain the category_ID from a received row of data
+	string categoryID;
+	
+	//strings used to store the description and name values in a row
+	string description, name;
+
+	// ints to store the position of the first and second delimiters
+	int delimiter;
+	int delimiter2;
+
+	// int to store the category_ID to be used for adding data to the category.txt file
+	int catID;
+
 	// assign to char delim the | character as the desired delimiter
-	delim = '|';
+	char delim = '|';
 
 	// opens category.txt
 	categoryInFile.open("category.txt");
@@ -102,33 +136,30 @@ string Category :: search(string columnName, string valueToFind)
 			// valueToFind (argument)
 			if(columnName == "category_id" && 
 				atoi(categoryID.c_str()) == atoi(valueToFind.c_str()))
-				// breaks the loop if parameters are met
-				break;
+				// concatenates the row that matched the search arguments to the string returnString 
+				// along with a line break at the end
+				returnString += rowReceive + "\n";
 
 			// checks if columnName (argument) is "description" and if description data of current row matches
 			// valueToFind (argument)
-			else if(columnName == "description" &&		//*** if statements in while loops probably isn't the
-				description == valueToFind)				//*** most efficient method. Maybe we need Strategy Pattern?
-														//*** instead of columnName as a parameter, 
-														//*** maybe a SearchStrategy object?
-				// breaks the loop if parameters are met
-				break;
+			else if(columnName == "description" && 
+				description == valueToFind)				
+				// concatenates the row that matched the search arguments to the string returnString 
+				// along with a line break at the end
+				returnString += rowReceive + "\n";
 
 			// checks if columnName (argument) is "name" and if name data of current row matches
 			// valueToFind (argument)
 			else if(columnName == "name" &&
 				name == valueToFind)
-				// breaks the loop if parameters are met
-				break;
+				// concatenates the row that matched the search arguments to the string returnString 
+				// along with a line break at the end
+				returnString += rowReceive + "\n";
 
 		}
 	}
 	// closes category.txt
 	categoryInFile.close();
-
-	// concatenates the row that matched the search arguments to the string returnString 
-	// along with a line break at the end
-	returnString += rowReceive + "\n";
 	
 	// checks if returnString contains less than the minimum number of characters (category_id and two delimiters)
 	if(returnString.size() < 3)
@@ -143,11 +174,24 @@ string Category :: search(string columnName, string valueToFind)
 
 void Category :: deleteRow(string columnName, string valueToFind)
 {
+	// string to contain the contents of a row received from the file
+	string rowReceive;
+
+	// string to contain the category_ID from a received row of data
+	string categoryID;
+	
+	//strings used to store the description and name values in a row
+	string description, name;
+
+	// ints to store the position of the first and second delimiters
+	int delimiter;
+	int delimiter2;
+
 	// vector to store all rows of the file except the one to be deleted then to be rewritten to the file
 	vector<string> catFileVect;
 
 	// assign to char delim the | character as the desired delimiter
-	delim = '|';
+	char delim = '|';
 
 	// opens category.txt
 	categoryInFile.open("category.txt");
