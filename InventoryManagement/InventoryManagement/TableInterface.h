@@ -34,6 +34,14 @@ public:
 	/// \param[in] valueToFind identifies the value to be searched for in the column
 	virtual void deleteRow(string columnName, string valueToFind) = 0;
 
+	/// \brief Modify functionn to change the data in a given row
+	///
+	/// \param[in] columnNameToFind identifies the column to search in
+	/// \param[in] valueToFind identifies the value to be searched for in the column
+	/// \param[in] columnNameToModify identifies the column to change data for
+	/// \prama[in] valueOfModify provides the new data for the desired column
+	virtual void modifyRow(string columnNameToFind, string valueToFind, string columnNameToModify, string valueOfModify) = 0;
+
 	/// Virtual destructor for TableInterface
 	virtual ~TableInterface() {};
 };

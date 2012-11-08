@@ -2,6 +2,9 @@
 
 void Category :: add(vector<string> addVector)
 {
+	// assigns the value for the name of the textfile to be used
+	categoryTextFile = "textFiles/category.txt";
+
 	// string to contain the contents of a row received from the file
 	string rowReceive;
 
@@ -15,7 +18,7 @@ void Category :: add(vector<string> addVector)
 	int categoryIDTemp;
 
 	// int to store the category_ID to be used for adding data to the category.txt file
-	int catID;
+	int catID = 0;
 
 	// assign to char delim the | character as the desired delimiter
 	char delim = '|';
@@ -25,13 +28,11 @@ void Category :: add(vector<string> addVector)
 	string name = addVector[1];
 	
 	// open the file "category.txt"
-	categoryInFile.open("category.txt");
+	categoryInFile.open(categoryTextFile);
 
 	// ensure that the file is opened
 	if(categoryInFile.is_open())
 	{
-		// assigns an initial value (0) to catID
-		catID = 0;
 
 		// while loop continues as long as there is another line in the text file
 		while(categoryInFile.good())
@@ -67,7 +68,7 @@ void Category :: add(vector<string> addVector)
 	categoryID = to_string(catID);
 
 	// opens file category.txt
-	categoryOutFile.open("category.txt", ios_base::app);
+	categoryOutFile.open(categoryTextFile, ios_base::app);
 
 	// writes to category.txt the new row data as defined by categoryID, descript, 
 	// and name, with delimiters between each input and a line break at the end
@@ -80,6 +81,9 @@ void Category :: add(vector<string> addVector)
 
 string Category :: search(string columnName, string valueToFind)
 {
+	// assigns the value for the name of the textfile to be used
+	categoryTextFile = "textFiles/category.txt";
+
 	// string to be used to return the results of a search
 	string returnString;
 
@@ -97,13 +101,13 @@ string Category :: search(string columnName, string valueToFind)
 	int delimiter2;
 
 	// int to store the category_ID to be used for adding data to the category.txt file
-	int catID;
+	int catID = 0;
 
 	// assign to char delim the | character as the desired delimiter
 	char delim = '|';
 
 	// opens category.txt
-	categoryInFile.open("category.txt");
+	categoryInFile.open(categoryTextFile);
 
 	// ensures that categoryInFile is open
 	if(categoryInFile.is_open())
@@ -174,6 +178,9 @@ string Category :: search(string columnName, string valueToFind)
 
 void Category :: deleteRow(string columnName, string valueToFind)
 {
+	// assigns the value for the name of the textfile to be used
+	categoryTextFile = "textFiles/category.txt";
+
 	// string to contain the contents of a row received from the file
 	string rowReceive;
 
@@ -194,7 +201,7 @@ void Category :: deleteRow(string columnName, string valueToFind)
 	char delim = '|';
 
 	// opens category.txt
-	categoryInFile.open("category.txt");
+	categoryInFile.open(categoryTextFile);
 
 	// ensures that categoryInFile is open
 	if(categoryInFile.is_open())
@@ -243,7 +250,7 @@ void Category :: deleteRow(string columnName, string valueToFind)
 	categoryInFile.close();
 	
 	// opens category.txt and eliminates all contents and prepares to write values from the vector to category.txt
-	categoryOutFile.open("category.txt", ios_base::trunc);
+	categoryOutFile.open(categoryTextFile, ios_base::trunc);
 	
 	// iterates through catFileVect and places each string from the vector into category.txt
 	for(int i = 0; i < (int) catFileVect.size(); i++)
@@ -254,4 +261,12 @@ void Category :: deleteRow(string columnName, string valueToFind)
 	
 	// closes category.txt
 	categoryOutFile.close();
+}
+
+void Category :: modifyRow(string columnNameToFind, string valueToFind, string columnNameToModify, string valueOfModify)
+{
+	// assigns the value for the name of the textfile to be used
+	categoryTextFile = "textFiles/category.txt";
+
+
 }

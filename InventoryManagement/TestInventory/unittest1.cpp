@@ -29,7 +29,7 @@ namespace TestInventory
 			cat = new Category();
 			
 			ofstream ofstr;
-			ofstr.open("category.txt", ios_base::trunc); // clear Category table
+			ofstr.open("textFiles/category.txt", ios_base::trunc); // clear Category table
 			
 			// Data for testing
 			ofstr << "1|sweet and tangy produce|fruits\n";
@@ -151,6 +151,35 @@ namespace TestInventory
 
 			// call the category search function to ensure that the category was successfully deleted
 			returnedString = cat->search("category_id", "4");
+
+			// convert the returned string to a const char to output in the test log
+			const char *p;
+			p = returnedString.c_str();
+			Logger::WriteMessage(p);
+
+			// assert that the returned string matches the expected string
+			// in this case the expectation is "Category Does Not Exist"
+			Assert::AreEqual(expectedString,returnedString);
+		}
+
+		TEST_METHOD(TestCategoryModify)
+		{
+			// identifies in the test log which test method is currently active
+			Logger::WriteMessage("TestCategoryModify");
+			
+			// string for the search return string
+			string returnedString;
+			
+			// string containing the expected information to be received from the search
+			string expectedString = "1|Description Modified|Name Modified\n";
+
+			// call the category modify function to modify the description
+			cat->modifyRow("category_id","1","description","Description Modified");
+			// call the category modify function to modify the name
+			cat->modifyRow("category_id","1","description","Name Modified");
+
+			// call the category search function to ensure that the category was successfully deleted
+			returnedString = cat->search("category_id", "1");
 
 			// convert the returned string to a const char to output in the test log
 			const char *p;
