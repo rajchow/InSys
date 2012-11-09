@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿Build started 09/11/2012 11:03:22 AM.
      1>Project "C:\Users\Eliazar de Guzman\Documents\Visual Studio 2012\Projects\InventoryManagement\TestInventory\TestInventory.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
@@ -17,3 +18,14 @@
 Build succeeded.
 
 Time Elapsed 00:00:00.62
+=======
+﻿Build started 09/11/2012 11:47:48 AM.
+     1>Project "C:\Users\Eliazar de Guzman\Documents\GitHub\InSys\InventoryManagement\TestInventory\TestInventory.vcxproj" on node 3 (Build target(s)).
+     1>Link:
+         TestInventory.vcxproj -> C:\Users\Eliazar de Guzman\Documents\GitHub\InSys\InventoryManagement\Debug\TestInventory.dll
+     1>Done Building Project "C:\Users\Eliazar de Guzman\Documents\GitHub\InSys\InventoryManagement\TestInventory\TestInventory.vcxproj" (Build target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:00.04
+>>>>>>> 9604ebfd074af0d2d18460c657fa0e1e78ddb94e
