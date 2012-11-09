@@ -4,11 +4,10 @@
 /* Standard C++ headers */
 #include <iostream>
 #include <sstream>
-#include <iostream>
 #include <fstream>
 #include <memory>
 #include <string>
-#include <stdexcept>
+#include <exception>
 #include <vector>
 
 using namespace std;
@@ -16,7 +15,7 @@ using namespace std;
 class TableInterface
 {
 public:
-	/// \brief Add function to insert data into the category text file
+	/// \brief Add function to insert data into the table text file
 	/// 
 	/// \param[in] addVector is a vector of strings for the data to be entered
 	virtual void add(vector<string> addVector) = 0;
@@ -26,7 +25,10 @@ public:
 	/// \param[in] columnName identifies the name of the column to be searched
 	/// \param[in] valueToFind identifies the value to be searched for in the column
 	/// \return a string which contains a concatenation of all values in the row found in the database table
-	virtual string search(string columnName, string valueToFind) = 0;
+	///         if multiple values exist, return all rows with that value, where
+	///         each row is separated by a new line
+	/// \throw excpetion if nothing was found
+	virtual string search(string columnName, string valueToFind) throw(exception) = 0;
 
 	/// \brief DeleteRow function to find a specific row of data and remove it from the file
 	///

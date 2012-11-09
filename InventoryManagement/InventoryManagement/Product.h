@@ -19,7 +19,7 @@ public:
 
 	string search(string columnName, string valueToFind);
 
-	void deleteRow(string columnName, string valueToFind);
+	void deleteRow(string columnName, string valueToFind) throw(exception);
 
 	void modifyRow(string columnNameToFind, string valueToFind, string columnNameToModify, string valueOfModify);
 };

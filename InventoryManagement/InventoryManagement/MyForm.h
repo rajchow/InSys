@@ -56,6 +56,7 @@ namespace InventoryManagement {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackColor = System::Drawing::SystemColors::Control;
 			this->ClientSize = System::Drawing::Size(284, 262);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";

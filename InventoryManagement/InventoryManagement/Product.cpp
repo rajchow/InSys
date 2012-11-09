@@ -4,7 +4,7 @@ void Product :: add(vector<string> addVector)
 {
 }
 
-string Product :: search(string columnName, string valueToFind)
+string Product :: search(string columnName, string valueToFind) throw(exception)
 {
 	return NULL;
 }

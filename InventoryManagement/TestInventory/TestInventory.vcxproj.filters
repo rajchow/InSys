@@ -26,6 +26,9 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TestInvoice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="categoryTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
