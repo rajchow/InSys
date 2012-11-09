@@ -79,7 +79,7 @@ void Category :: add(vector<string> addVector)
 
 }
 
-string Category :: search(string columnName, string valueToFind)
+string Category :: search(string columnName, string valueToFind) throw(exception)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
