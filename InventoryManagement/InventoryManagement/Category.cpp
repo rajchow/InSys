@@ -63,7 +63,7 @@ void Category :: add(vector<string> addVector)
 
 }
 
-string Category :: search(string columnName, string valueToFind)
+string Category :: search(string columnName, string valueToFind) throw(exception)
 {
 	// assign to char delim the | character as the desired delimiter
 	delim = '|';

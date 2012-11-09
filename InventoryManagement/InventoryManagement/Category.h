@@ -38,7 +38,7 @@ private:
 public:
 	void add(vector<string> addVector);
 
-	string search(string columnName, string valueToFind);
+	string search(string columnName, string valueToFind) throw(exception);
 
 	void deleteRow(string columnName, string valueToFind);
 };
