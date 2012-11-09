@@ -81,7 +81,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="AlreadyExistsException.h" />
     <ClInclude Include="Category.h" />
+    <ClInclude Include="DoesNotExistException.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -1,10 +1,10 @@
 #include "Product.h"
 
-void Product :: add(vector<string> addVector)
+void Product :: add(vector<string> addVector) throw(AlreadyExistsException)
 {
 }
 
-string Product :: search(string columnName, string valueToFind)
+string Product :: search(string columnName, string valueToFind) throw(DoesNotExistException)
 {
 	return NULL;
 }

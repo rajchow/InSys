@@ -1,6 +1,6 @@
 #include "Category.h"
 
-void Category :: add(vector<string> addVector)
+void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
@@ -79,7 +79,7 @@ void Category :: add(vector<string> addVector)
 
 }
 
-string Category :: search(string columnName, string valueToFind)
+string Category :: search(string columnName, string valueToFind) throw(DoesNotExistException)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
