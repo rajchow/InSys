@@ -268,5 +268,92 @@ void Category :: modifyRow(string columnNameToFind, string valueToFind, string c
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
 
+	// string to contain the row data received from the file
+	string rowReceive;
+	
+	// string to contain the category_ID from a received row of data
+	string categoryID;
+	
+	//strings used to store the description and name values in a row
+	string description, name;
+
+	// vector to store all rows of the file then to be rewritten to the file with the required modifications
+	vector<string> catFileVect;
+
+	// ints to store the position of the first and second delimiters
+	int delimiter;
+	int delimiter2;
+
+	// assign to char delim the | character as the desired delimiter
+	char delim = '|';
+
+	// opens category.txt
+	categoryInFile.open(categoryTextFile);
+
+	// ensures that categoryInFile is open
+	if(categoryInFile.is_open())
+	{
+		// while loop continues as long as there is another line in the text file
+		while(categoryInFile.good())
+		{
+			// retrieves the next line in categoryInFile and assigns it to the string rowReceive
+			getline(categoryInFile, rowReceive);
+
+			// finds the first delimiter position and assigns it to int delimiter
+			delimiter = rowReceive.find('|');
+			
+			// finds the second delimiter position and assigns it to int delimiter2
+			delimiter2 = rowReceive.find('|', delimiter+1);
+
+			// retrieves the category_ID from the row data and assigns it to categoryID
+			categoryID = rowReceive.substr(0,delimiter);
+
+			// retrieves the description from the row data and assigns it to string description
+			description = rowReceive.substr(delimiter+1, delimiter2-2);
+
+			// retrieves the name from the row data and assigns it to string name
+			name = rowReceive.substr(delimiter2+1);
+
+			// if - 
+			// columnName (argument) = category_id and the valueToFind (argument) does not match the current 
+			//		row category_id value then the row is written to the vector
+			// columnName (argument) = description and the valueToFind (argument) does not match the current 
+			//		row description value then the row is written to the vector
+			// columnName (argument) = name and the valueToFind (argument) does not match the current 
+			//		row name value then the row is written to the vector
+			// 
+			// else - if the columnName (argument) and the valueToFind (argument) do match the current row
+			//		the row is modified with the desired changes
+			if((columnNameToFind == "category_id" && atoi(categoryID.c_str()) != atoi(valueToFind.c_str())) 
+				|| ((columnNameToFind == "description" && description != valueToFind)) 
+				|| ((columnNameToFind == "name" && name != valueToFind)))
+			{
+				catFileVect.push_back(rowReceive);
+			} else {
+				// checks if the desired column to change is description and inputs the row with the new description into the vector
+				if(columnNameToModify == "description")
+					catFileVect.push_back(categoryID + delim + valueOfModify + delim + name);
+				// checks if the desired column to change is name and inputs the row with the new name into the vector
+				else if(columnNameToModify == "name")
+					catFileVect.push_back(categoryID + delim + description + delim + valueOfModify);
+			}
+		}
+	}
+	
+	// closes category.txt
+	categoryInFile.close();
+	
+	// opens category.txt and eliminates all contents and prepares to write values from the vector to category.txt
+	categoryOutFile.open(categoryTextFile, ios_base::trunc);
+	
+	// iterates through catFileVect and places each string from the vector into category.txt
+	for(int i = 0; i < (int) catFileVect.size(); i++)
+	{
+		// writes string from vector into category.txt
+		categoryOutFile<<catFileVect[i]<<endl;
+	}
+	
+	// closes category.txt
+	categoryOutFile.close();
 
 }

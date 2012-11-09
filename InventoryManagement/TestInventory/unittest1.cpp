@@ -22,7 +22,7 @@ namespace TestInventory
 		///
 		/// - Sets cat to point to a Category table class
 		/// - Clears the Category table in the database and then adds data for testing
-		TEST_CLASS_INITIALIZE(setup)
+		TEST_METHOD_INITIALIZE(setup)
 		{
 			Logger::WriteMessage("TEST_CLASS setup");
 
@@ -40,7 +40,7 @@ namespace TestInventory
 		}
 
 		/// \brief Clean up function after test class is run
-		TEST_CLASS_CLEANUP(teardown)
+		TEST_METHOD_CLEANUP(teardown)
 		{
 			Logger::WriteMessage("TEST_CLASS cleanup");
 
@@ -147,10 +147,10 @@ namespace TestInventory
 			string expectedString = "Category Does Not Exist";
 
 			// call the category delete function
-			cat->deleteRow("category_id","4");
+			cat->deleteRow("category_id","1");
 
 			// call the category search function to ensure that the category was successfully deleted
-			returnedString = cat->search("category_id", "4");
+			returnedString = cat->search("category_id", "1");
 
 			// convert the returned string to a const char to output in the test log
 			const char *p;
@@ -162,6 +162,7 @@ namespace TestInventory
 			Assert::AreEqual(expectedString,returnedString);
 		}
 
+		/// \brief Test if category can modify the a row of data in category.txt
 		TEST_METHOD(TestCategoryModify)
 		{
 			// identifies in the test log which test method is currently active
@@ -176,7 +177,7 @@ namespace TestInventory
 			// call the category modify function to modify the description
 			cat->modifyRow("category_id","1","description","Description Modified");
 			// call the category modify function to modify the name
-			cat->modifyRow("category_id","1","description","Name Modified");
+			cat->modifyRow("category_id","1","name","Name Modified");
 
 			// call the category search function to ensure that the category was successfully deleted
 			returnedString = cat->search("category_id", "1");
