@@ -13,7 +13,7 @@ namespace TestInventory
 	Table cat;
 
 	/// Unit test class for testing Category class
-	TEST_CLASS(UnitTest1)
+	TEST_CLASS(categoryTests)
 	{
 
 	public:
