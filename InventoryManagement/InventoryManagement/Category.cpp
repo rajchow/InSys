@@ -263,7 +263,7 @@ void Category :: deleteRow(string columnName, string valueToFind)
 	categoryOutFile.close();
 }
 
-void Category :: modifyRow(string columnNameToFind, string valueToFind, string columnNameToModify, string valueOfModify)
+void Category :: modifyRow(string valueToFind, string columnNameToModify, string valueOfModify)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
@@ -314,19 +314,10 @@ void Category :: modifyRow(string columnNameToFind, string valueToFind, string c
 			// retrieves the name from the row data and assigns it to string name
 			name = rowReceive.substr(delimiter2+1);
 
-			// if - 
-			// columnName (argument) = category_id and the valueToFind (argument) does not match the current 
-			//		row category_id value then the row is written to the vector
-			// columnName (argument) = description and the valueToFind (argument) does not match the current 
-			//		row description value then the row is written to the vector
-			// columnName (argument) = name and the valueToFind (argument) does not match the current 
-			//		row name value then the row is written to the vector
+			// if - the valueToFind (argument) does not match the current row category_id value then the row is written to the vector
 			// 
-			// else - if the columnName (argument) and the valueToFind (argument) do match the current row
-			//		the row is modified with the desired changes
-			if((columnNameToFind == "category_id" && atoi(categoryID.c_str()) != atoi(valueToFind.c_str())) 
-				|| ((columnNameToFind == "description" && description != valueToFind)) 
-				|| ((columnNameToFind == "name" && name != valueToFind)))
+			// else - if the valueToFind (argument) do match the current row the row is modified with the desired changes
+			if(atoi(categoryID.c_str()) != atoi(valueToFind.c_str()))
 			{
 				catFileVect.push_back(rowReceive);
 			} else {

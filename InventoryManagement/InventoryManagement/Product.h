@@ -21,7 +21,7 @@ public:
 
 	void deleteRow(string columnName, string valueToFind);
 
-	void modifyRow(string columnNameToFind, string valueToFind, string columnNameToModify, string valueOfModify);
+	void modifyRow(string valueToFind, string columnNameToModify, string valueOfModify);
 };
 
 #endif
