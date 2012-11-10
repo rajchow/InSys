@@ -10,6 +10,7 @@
 #include <string>
 #include <stdexcept>
 #include <vector>
+#include <list>
 
 #include "AlreadyExistsException.h"
 #include "DoesNotExistException.h"

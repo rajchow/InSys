@@ -42,7 +42,7 @@ namespace TestInventory
 		/// \brief Clean up function after test class is run
 		TEST_METHOD_CLEANUP(teardown)
 		{
-			Logger::WriteMessage("TEST_CLASS cleanup");
+			Logger::WriteMessage("TEST_CLASS cleanup\n");
 
 			delete cat;
 		}

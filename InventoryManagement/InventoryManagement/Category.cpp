@@ -106,9 +106,6 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 	int delimiter;
 	int delimiter2;
 
-	// int to store the category_ID to be used for adding data to the category.txt file
-	int catID = 0;
-
 	// assign to char delim the | character as the desired delimiter
 	char delim = '|';
 

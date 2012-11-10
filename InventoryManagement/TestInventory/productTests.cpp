@@ -31,9 +31,9 @@ namespace TestInventory
 			ofstr.open("textFiles/product.txt", ios_base::trunc); // clear Category table
 			
 			// Data for testing
-			ofstr << "1|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\n";
-			ofstr << "2|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n";
-			ofstr << "3|2|250g bag Budget Brand Regular Tortilla Chips|BBRegTortillaChip|2.24\n";
+			ofstr << "1425|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\n";
+			ofstr << "2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n";
+			ofstr << "1002|2|250g bag Budget Brand Regular Tortilla Chips|BBRegTortillaChip|2.24\n";
 		
 			ofstr.close();
 		}
@@ -41,11 +41,12 @@ namespace TestInventory
 		/// \brief Clean up function after test class is run
 		TEST_METHOD_CLEANUP(teardown)
 		{
-			Logger::WriteMessage("TEST_CLASS cleanup");
+			Logger::WriteMessage("TEST_CLASS cleanup\n");
 
 			delete prod;
 		}
 
+		/// \brief Test that product class prevents adding duplicate product_id data
 		TEST_METHOD(TestProductAddAlreadyExists)
 		{
 			// identifies in the test log which test method is currently active
@@ -60,7 +61,7 @@ namespace TestInventory
 			// vector to contain the information for the required columns for a new entry
 			vector<string> prodVector;
 			// insertion of the test data into the vector to be passed as the argument for the add function
-			prodVector.push_back("1");
+			prodVector.push_back("1425");
 			prodVector.push_back("3");
 			prodVector.push_back("150g bag Budget Brand Gummy Worms");
 			prodVector.push_back("BBGummyWorms");
@@ -79,6 +80,7 @@ namespace TestInventory
 			Assert::AreEqual(stringExpected, returnedString);
 		}
 
+		/// \brief Test that product class successfully adds a new product item
 		TEST_METHOD(TestProductAdd)
 		{
 			// identifies in the test log which test method is currently active
@@ -88,12 +90,12 @@ namespace TestInventory
 			string productReturned;
 
 			// string containing the expected information to be received from the search
-			string productExpected = "4|2|550g bag Budget Brand All Dressed Potato Chips|BBAllDressedLarge|4.98\n";
+			string productExpected = "1000|2|550g bag Budget Brand All Dressed Potato Chips|BBAllDressedLarge|4.98\n";
 
 			// vector to contain the information for the required columns for a new entry
 			vector<string> prodVector;
 			// insertion of the test data into the vector to be passed as the argument for the add function
-			prodVector.push_back("4");
+			prodVector.push_back("1000");
 			prodVector.push_back("2");
 			prodVector.push_back("550g bag Budget Brand All Dressed Potato Chips");
 			prodVector.push_back("BBAllDressedLarge");
@@ -103,7 +105,7 @@ namespace TestInventory
 			prod->add(prodVector);
 
 			// calling the category seach function to ensure that the add function was successful
-			productReturned = prod->search("product_id", "4");
+			productReturned = prod->search("product_id", "1000");
 			
 			// convert the returned string to a const char to output in the test log
 			const char *p;
