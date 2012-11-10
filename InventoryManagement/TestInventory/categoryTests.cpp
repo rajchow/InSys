@@ -100,6 +100,22 @@ namespace TestInventory
 
 		}
 
+		/// \brief Test response to a search for a Category that does not exist
+		TEST_METHOD(TestCategorySearchDoesNotExist)
+		{
+			Logger::WriteMessage("TestCategorySearchDoesNotExist");
+
+			string categoryReturned;
+
+			categoryReturned = cat->search("name", "electronics");
+
+			const char *p;
+			p = categoryReturned.c_str();
+			Logger::WriteMessage(p);
+
+			Assert::AreEqual("Category Does Not Exist", categoryReturned.c_str());
+		}
+
 		/// \brief Test if category can add a new data entry into category.txt
 		TEST_METHOD(TestCategoryAdd)
 		{
@@ -175,9 +191,9 @@ namespace TestInventory
 			string expectedString = "1|Description Modified|Name Modified\n";
 
 			// call the category modify function to modify the description
-			cat->modifyRow("category_id","1","description","Description Modified");
+			cat->modifyRow("1","description","Description Modified");
 			// call the category modify function to modify the name
-			cat->modifyRow("category_id","1","name","Name Modified");
+			cat->modifyRow("1","name","Name Modified");
 
 			// call the category search function to ensure that the category was successfully deleted
 			returnedString = cat->search("category_id", "1");

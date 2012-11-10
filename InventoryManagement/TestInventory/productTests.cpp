@@ -24,12 +24,95 @@ namespace TestInventory
 		TEST_METHOD_INITIALIZE(setup)
 		{
 			Logger::WriteMessage("TEST_CLASS setup");
+
+			prod = new Product();
+			
+			ofstream ofstr;
+			ofstr.open("textFiles/product.txt", ios_base::trunc); // clear Category table
+			
+			// Data for testing
+			ofstr << "1|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\n";
+			ofstr << "2|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n";
+			ofstr << "3|2|250g bag Budget Brand Regular Tortilla Chips|BBRegTortillaChip|2.24\n";
+		
+			ofstr.close();
 		}
 
 		/// \brief Clean up function after test class is run
 		TEST_METHOD_CLEANUP(teardown)
 		{
 			Logger::WriteMessage("TEST_CLASS cleanup");
+
+			delete prod;
+		}
+
+		TEST_METHOD(TestProductAddAlreadyExists)
+		{
+			// identifies in the test log which test method is currently active
+			Logger::WriteMessage("TestProductAddAlreadyExists");
+
+			// string for the search return string
+			string returnedString;
+
+			// string containing the expected information to be received from the search
+			string stringExpected = "Product ID already exists";
+
+			// vector to contain the information for the required columns for a new entry
+			vector<string> prodVector;
+			// insertion of the test data into the vector to be passed as the argument for the add function
+			prodVector.push_back("1");
+			prodVector.push_back("3");
+			prodVector.push_back("150g bag Budget Brand Gummy Worms");
+			prodVector.push_back("BBGummyWorms");
+			prodVector.push_back("1.98");
+
+			// calling the category add function
+			returnedString = prod->add(prodVector);
+			
+			// convert the returned string to a const char to output in the test log
+			const char *p;
+			p = returnedString.c_str();
+			Logger::WriteMessage(p);
+			
+			// assert that the return string matches the expected return string
+			// in this case the expected return is "Product ID already exists"
+			Assert::AreEqual(stringExpected, returnedString);
+		}
+
+		TEST_METHOD(TestProductAdd)
+		{
+			// identifies in the test log which test method is currently active
+			Logger::WriteMessage("TestProductAdd");
+
+			// string for the search return string
+			string productReturned;
+
+			// string containing the expected information to be received from the search
+			string productExpected = "4|2|550g bag Budget Brand All Dressed Potato Chips|BBAllDressedLarge|4.98\n";
+
+			// vector to contain the information for the required columns for a new entry
+			vector<string> prodVector;
+			// insertion of the test data into the vector to be passed as the argument for the add function
+			prodVector.push_back("4");
+			prodVector.push_back("2");
+			prodVector.push_back("550g bag Budget Brand All Dressed Potato Chips");
+			prodVector.push_back("BBAllDressedLarge");
+			prodVector.push_back("4.98");
+
+			// calling the category add function
+			prod->add(prodVector);
+
+			// calling the category seach function to ensure that the add function was successful
+			productReturned = prod->search("product_id", "4");
+			
+			// convert the returned string to a const char to output in the test log
+			const char *p;
+			p = productReturned.c_str();
+			Logger::WriteMessage(p);
+			
+			// assert that the return string matches the expected return string
+			// in this case the expected return is "4|testDescription|testName\n"
+			Assert::AreEqual(productExpected, productReturned);
 		}
 
 	};

@@ -1,6 +1,6 @@
 #include "Category.h"
 
-void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
+string Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
@@ -10,8 +10,8 @@ void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 
 	// string to contain the category_ID from a received row of data
 	string categoryID;
-	
-	// ints to store the position of the first and second delimiters
+
+	// int to store the position of the delimiter
 	int delimiter;
 
 	// int to store the category_ID while checking if it is the highest category_ID value used
@@ -77,12 +77,18 @@ void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 	// closes category.txt
 	categoryOutFile.close();
 
+	// returns a string notifying the user of a successful add
+	return "Category Added Successfully";
+
 }
 
 string Category :: search(string columnName, string valueToFind) throw(DoesNotExistException)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
+
+	// bool to tell whether a match was found or not
+	bool resultFound = false;
 
 	// string to be used to return the results of a search
 	string returnString;
@@ -106,74 +112,85 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 	// assign to char delim the | character as the desired delimiter
 	char delim = '|';
 
-	// opens category.txt
-	categoryInFile.open(categoryTextFile);
+	try{
+		// opens category.txt
+		categoryInFile.open(categoryTextFile);
 
-	// ensures that categoryInFile is open
-	if(categoryInFile.is_open())
-	{
-		// initially clears all text from returnString
-		returnString.clear();
-
-		// while loop continues as long as there is another line in the text file
-		while(categoryInFile.good())
+		// ensures that categoryInFile is open
+		if(categoryInFile.is_open())
 		{
-			// retrieves the next line in categoryInFile and assigns it to the string rowReceive
-			getline(categoryInFile, rowReceive);
+			// initially clears all text from returnString
+			returnString.clear();
 
-			// finds the first delimiter position and assigns it to int delimiter
-			delimiter = rowReceive.find('|');
+			// while loop continues as long as there is another line in the text file
+			while(categoryInFile.good())
+			{
+				// retrieves the next line in categoryInFile and assigns it to the string rowReceive
+				getline(categoryInFile, rowReceive);
+
+				// finds the first delimiter position and assigns it to int delimiter
+				delimiter = rowReceive.find('|');
 			
-			// finds the second delimiter position and assigns it to int delimiter2
-			delimiter2 = rowReceive.find('|', delimiter+1);
+				// finds the second delimiter position and assigns it to int delimiter2
+				delimiter2 = rowReceive.find('|', delimiter+1);
 
-			// retrieves the category_ID from the row data and assigns it to categoryID
-			categoryID = rowReceive.substr(0,delimiter);
+				// retrieves the category_ID from the row data and assigns it to categoryID
+				categoryID = rowReceive.substr(0,delimiter);
 
-			// retrieves the description from the row data and assigns it to string description
-			description = rowReceive.substr(delimiter+1, delimiter2-2);
+				// retrieves the description from the row data and assigns it to string description
+				description = rowReceive.substr(delimiter+1, delimiter2-2);
 
-			// retrieves the name from the row data and assigns it to string name
-			name = rowReceive.substr(delimiter2+1);
+				// retrieves the name from the row data and assigns it to string name
+				name = rowReceive.substr(delimiter2+1);
 
-			// checks if columnName (argument) is "category_id" and if category_id data of current row matches 
-			// valueToFind (argument)
-			if(columnName == "category_id" && 
-				atoi(categoryID.c_str()) == atoi(valueToFind.c_str()))
-				// concatenates the row that matched the search arguments to the string returnString 
-				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				// checks if columnName (argument) is "category_id" and if category_id data of current row matches 
+				// valueToFind (argument)
+				if(columnName == "category_id" && 
+					atoi(categoryID.c_str()) == atoi(valueToFind.c_str()))
+				{
+					// concatenates the row that matched the search arguments to the string returnString 
+					// along with a line break at the end
+					returnString += rowReceive + "\n";
 
-			// checks if columnName (argument) is "description" and if description data of current row matches
-			// valueToFind (argument)
-			else if(columnName == "description" && 
-				description == valueToFind)				
-				// concatenates the row that matched the search arguments to the string returnString 
-				// along with a line break at the end
-				returnString += rowReceive + "\n";
+					resultFound = true;
+				}
 
-			// checks if columnName (argument) is "name" and if name data of current row matches
-			// valueToFind (argument)
-			else if(columnName == "name" &&
-				name == valueToFind)
-				// concatenates the row that matched the search arguments to the string returnString 
-				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				// checks if columnName (argument) is "description" and if description data of current row matches
+				// valueToFind (argument)
+				else if(columnName == "description" && 
+					description == valueToFind)
+				{
+					// concatenates the row that matched the search arguments to the string returnString 
+					// along with a line break at the end
+					returnString += rowReceive + "\n";
 
+					resultFound = true;
+				}
+				// checks if columnName (argument) is "name" and if name data of current row matches
+				// valueToFind (argument)
+				else if(columnName == "name" &&
+					name == valueToFind)
+				{
+					// concatenates the row that matched the search arguments to the string returnString 
+					// along with a line break at the end
+					returnString += rowReceive + "\n";
+
+					resultFound = true;
+				}
+			}
 		}
-	}
-	// closes category.txt
-	categoryInFile.close();
-	
-	// checks if returnString contains less than the minimum number of characters (category_id and two delimiters)
-	if(returnString.size() < 3)
-	{
-		// if returnString did not receive any row data it is assigned a string stating that the row does not exist
-		returnString = "Category Does Not Exist";
-	}
+		// closes category.txt
+		categoryInFile.close();
 
-	// \return returnString is returned as a result of the search function
-	return returnString;
+		if(!resultFound)
+			throw DoesNotExistException("Category Does Not Exist");
+
+		// \return returnString is returned as a result of the search function
+		return returnString;
+	} catch(DoesNotExistException e)
+	{
+		return e.what();
+	}
 }
 
 void Category :: deleteRow(string columnName, string valueToFind)

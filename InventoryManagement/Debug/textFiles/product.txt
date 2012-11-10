@@ -1,0 +1,4 @@
+1|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98
+2|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49
+3|2|250g bag Budget Brand Regular Tortilla Chips|BBRegTortillaChip|2.24
+4|2|550g bag Budget Brand All Dressed Potato Chips|BBAllDressedLarge|4.98

@@ -7,15 +7,15 @@ class Product : public TableInterface
 {
 private:
 	/// output and input streams for reading and writing the category.txt file
-	ofstream categoryOutFile;
-	ifstream categoryInFile;
+	ofstream productOutFile;
+	ifstream productInFile;
 
 	/// variable to contain the filename to be used for the category data
-	string categoryTextFile;
+	string productTextFile;
 	
 
 public:
-	void add(vector<string> addVector) throw(AlreadyExistsException);
+	string add(vector<string> addVector) throw(AlreadyExistsException);
 
 	string search(string columnName, string valueToFind) throw(DoesNotExistException);
 

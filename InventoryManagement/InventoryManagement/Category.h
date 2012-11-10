@@ -15,7 +15,7 @@ private:
 	
 
 public:
-	void add(vector<string> addVector) throw(AlreadyExistsException);
+	string add(vector<string> addVector) throw(AlreadyExistsException);
 
 	string search(string columnName, string valueToFind) throw(DoesNotExistException);
 
