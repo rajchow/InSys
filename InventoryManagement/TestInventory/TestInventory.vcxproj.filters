@@ -32,5 +32,8 @@
     <ClCompile Include="productTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="invoiceTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

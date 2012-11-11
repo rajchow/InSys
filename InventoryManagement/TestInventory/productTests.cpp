@@ -9,7 +9,7 @@ using namespace std;
 
 namespace TestInventory
 {
-	/// Pointer to TableInterface to be used for interacting with the Category table
+	/// Pointer to TableInterface to be used for interacting with the Product table
 	Table prod;
 	
 	/// Unit test class for testing Product class

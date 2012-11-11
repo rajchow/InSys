@@ -17,14 +17,22 @@
 
 using namespace std;
 
+/// \brief Class for interacting with the tables in the database
+///
+/// TableInterface will interact with each table in the database
+/// Responsibilities of the TableInterface class include:
+/// - Add a row to a table of the database
+/// - Search for a row in a table of the database
+/// - Delete a row in a table of the database
+/// - Modify a row in a table of the database
 class TableInterface
 {
 public:
 	/// \brief Add function to insert data into the category text file
 	/// 
 	/// \param[in] addVector is a vector of strings for the data to be entered
-	/// \throw AlreadyExistsException when trying to add a primary key that already exists
 	/// \return returns a string to notify the user whether the add was successful or not
+	/// \throw AlreadyExistsException when trying to add a primary key that already exists
 	virtual string add(vector<string> addVector) throw(AlreadyExistsException) = 0;
 
 	/// \brief Search function to find a specific row of data and return it as a string
