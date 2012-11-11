@@ -2,9 +2,6 @@
 
 void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 {
-	// assigns the value for the name of the textfile to be used
-	categoryTextFile = "textFiles/category.txt";
-
 	// string to contain the contents of a row received from the file
 	string rowReceive;
 
@@ -81,9 +78,6 @@ void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 
 string Category :: search(string columnName, string valueToFind) throw(DoesNotExistException)
 {
-	// assigns the value for the name of the textfile to be used
-	categoryTextFile = "textFiles/category.txt";
-
 	// bool to tell whether a match was found or not
 	bool resultFound = false;
 
@@ -184,9 +178,6 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 
 void Category :: deleteRow(string valueToFind)
 {
-	// assigns the value for the name of the textfile to be used
-	categoryTextFile = "textFiles/category.txt";
-
 	// string to contain the contents of a row received from the file
 	string rowReceive;
 
@@ -249,9 +240,6 @@ void Category :: deleteRow(string valueToFind)
 
 void Category :: modifyRow(string valueToFind, string columnNameToModify, string valueOfModify)
 {
-	// assigns the value for the name of the textfile to be used
-	categoryTextFile = "textFiles/category.txt";
-
 	// string to contain the row data received from the file
 	string rowReceive;
 	
@@ -333,3 +321,8 @@ void Category :: modifyRow(string valueToFind, string columnNameToModify, string
 	categoryOutFile.close();
 
 }
+
+// Initializes categoryTextFile
+Category::Category() { categoryTextFile = "textFiles/category.txt"; }
+
+Category::~Category(){}

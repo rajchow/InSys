@@ -1,14 +1,28 @@
-﻿Build started 10/11/2012 9:07:31 PM.
+﻿Build started 10/11/2012 9:31:29 PM.
      1>Project "C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\InventoryManagement\InventoryManagement.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Category.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /Zi /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt Category.cpp Product.cpp
+         Product.cpp
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\TableInterface.h(36): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\TableInterface.h(46): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Product.h(33): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Product.h(35): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>Product.cpp(3): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>Product.cpp(77): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
          Category.cpp
      1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\TableInterface.h(36): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
      1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\TableInterface.h(46): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Category.h(18): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Category.h(20): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Category.h(33): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Category.h(35): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
      1>Category.cpp(3): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
-     1>Category.cpp(82): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>Category.cpp(79): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+         Generating Code...
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /AI"C:\Program Files (x86)\Windows Kits\8.0\References\CommonConfiguration\Neutral" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _WINDOWS /D _UNICODE /D UNICODE /Gm- /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib MyForm.cpp
+         MyForm.cpp
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\TableInterface.h(36): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\TableInterface.h(46): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Category.h(33): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
+     1>c:\users\michael\documents\visual studio 2012\projects\inventorymanagement\inventorymanagement\Category.h(35): warning C4290: C++ exception specification ignored except to indicate a function is not __declspec(nothrow)
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Debug\InventoryManagement.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /ASSEMBLYRESOURCE:Debug\InventoryManagement.MyForm.resources /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Debug\InventoryManagement.pdb" /SUBSYSTEM:WINDOWS /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Debug\InventoryManagement.lib" /MACHINE:X86 Debug\Category.obj
          Debug\Invoice.obj
@@ -19,4 +33,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.68
+Time Elapsed 00:00:04.95

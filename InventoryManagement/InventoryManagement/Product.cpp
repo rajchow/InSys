@@ -5,9 +5,6 @@ void Product :: add(vector<string> addVector) throw(AlreadyExistsException)
 	// list to retrieve all rows in the file, sort by product_id, then write back to the file
 	list<string> prodList;
 
-	// assigns the value for the name of the textfile to be used
-	productTextFile = "textFiles/product.txt";
-
 	// string to contain the contents of a row received from the file
 	string rowReceive;
 
@@ -79,8 +76,6 @@ void Product :: add(vector<string> addVector) throw(AlreadyExistsException)
 
 string Product :: search(string columnName, string valueToFind) throw(DoesNotExistException)
 {
-	// assigns the value for the name of the textfile to be used
-	productTextFile = "textFiles/product.txt";
 
 	// bool to tell whether a match was found or not
 	bool resultFound = false;
@@ -224,12 +219,13 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 
 void Product :: deleteRow(string valueToFind)
 {
-	// assigns the value for the name of the textfile to be used
-	productTextFile = "textFiles/product.txt";
 }
 
 void Product :: modifyRow(string valueToFind, string columnNameToModify, string valueOfModify)
 {
-	// assigns the value for the name of the textfile to be used
-	productTextFile = "textFiles/product.txt";
 }
+
+// Initializes productTextFile
+Product::Product() { productTextFile = "textFiles/product.txt"; }
+
+Product::~Product(){}
