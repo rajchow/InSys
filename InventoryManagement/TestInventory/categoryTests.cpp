@@ -104,16 +104,18 @@ namespace TestInventory
 		TEST_METHOD(TestCategorySearchDoesNotExist)
 		{
 			Logger::WriteMessage("TestCategorySearchDoesNotExist");
+			
 
 			string categoryReturned;
-
-			categoryReturned = cat->search("name", "electronics");
-
-			const char *p;
-			p = categoryReturned.c_str();
-			Logger::WriteMessage(p);
-
-			Assert::AreEqual("Category Does Not Exist", categoryReturned.c_str());
+			try{
+				categoryReturned = cat->search("name", "electronics");
+				Assert::Fail(L"No exception for input",LINE_INFO());
+			} catch(DoesNotExistException e) {
+				// Correct exception caught
+			} catch(...)
+			{
+				Assert::Fail(L"Wrong Exception Caught", LINE_INFO());
+			}
 		}
 
 		/// \brief Test if category can add a new data entry into category.txt
@@ -158,24 +160,20 @@ namespace TestInventory
 			
 			// string for the search return string
 			string returnedString;
-			
-			// string containing the expected information to be received from the search
-			string expectedString = "Category Does Not Exist";
 
 			// call the category delete function
 			cat->deleteRow("1");
 
-			// call the category search function to ensure that the category was successfully deleted
-			returnedString = cat->search("category_id", "1");
-
-			// convert the returned string to a const char to output in the test log
-			const char *p;
-			p = returnedString.c_str();
-			Logger::WriteMessage(p);
-
-			// assert that the returned string matches the expected string
-			// in this case the expectation is "Category Does Not Exist"
-			Assert::AreEqual(expectedString,returnedString);
+			try{
+				// call the category search function to ensure that the category was successfully deleted
+				returnedString = cat->search("category_id", "1");
+				Assert::Fail(L"No exception for input",LINE_INFO());
+			} catch(DoesNotExistException e) {
+				// Correct exception caught
+			} catch(...)
+			{
+				Assert::Fail(L"Wrong Exception Caught", LINE_INFO());
+			}
 		}
 
 		/// \brief Test if category can modify the a row of data in category.txt

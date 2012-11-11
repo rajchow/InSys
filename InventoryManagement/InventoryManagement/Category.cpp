@@ -1,6 +1,6 @@
 #include "Category.h"
 
-string Category :: add(vector<string> addVector) throw(AlreadyExistsException)
+void Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
@@ -77,9 +77,6 @@ string Category :: add(vector<string> addVector) throw(AlreadyExistsException)
 	// closes category.txt
 	categoryOutFile.close();
 
-	// returns a string notifying the user of a successful add
-	return "Category Added Successfully";
-
 }
 
 string Category :: search(string columnName, string valueToFind) throw(DoesNotExistException)
@@ -109,85 +106,80 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 	// assign to char delim the | character as the desired delimiter
 	char delim = '|';
 
-	try{
-		// opens category.txt
-		categoryInFile.open(categoryTextFile);
+	// opens category.txt
+	categoryInFile.open(categoryTextFile);
 
-		// ensures that categoryInFile is open
-		if(categoryInFile.is_open())
+	// ensures that categoryInFile is open
+	if(categoryInFile.is_open())
+	{
+		// initially clears all text from returnString
+		returnString.clear();
+
+		// while loop continues as long as there is another line in the text file
+		while(categoryInFile.good())
 		{
-			// initially clears all text from returnString
-			returnString.clear();
+			// retrieves the next line in categoryInFile and assigns it to the string rowReceive
+			getline(categoryInFile, rowReceive);
 
-			// while loop continues as long as there is another line in the text file
-			while(categoryInFile.good())
-			{
-				// retrieves the next line in categoryInFile and assigns it to the string rowReceive
-				getline(categoryInFile, rowReceive);
-
-				// finds the first delimiter position and assigns it to int delimiter
-				delimiter = rowReceive.find('|');
+			// finds the first delimiter position and assigns it to int delimiter
+			delimiter = rowReceive.find('|');
 			
-				// finds the second delimiter position and assigns it to int delimiter2
-				delimiter2 = rowReceive.find('|', delimiter+1);
+			// finds the second delimiter position and assigns it to int delimiter2
+			delimiter2 = rowReceive.find('|', delimiter+1);
 
-				// retrieves the category_ID from the row data and assigns it to categoryID
-				categoryID = rowReceive.substr(0,delimiter);
+			// retrieves the category_ID from the row data and assigns it to categoryID
+			categoryID = rowReceive.substr(0,delimiter);
 
-				// retrieves the description from the row data and assigns it to string description
-				description = rowReceive.substr(delimiter+1, delimiter2-2);
+			// retrieves the description from the row data and assigns it to string description
+			description = rowReceive.substr(delimiter+1, delimiter2-2);
 
-				// retrieves the name from the row data and assigns it to string name
-				name = rowReceive.substr(delimiter2+1);
+			// retrieves the name from the row data and assigns it to string name
+			name = rowReceive.substr(delimiter2+1);
 
-				// checks if columnName (argument) is "category_id" and if category_id data of current row matches 
-				// valueToFind (argument)
-				if(columnName == "category_id" && 
-					atoi(categoryID.c_str()) == atoi(valueToFind.c_str()))
-				{
-					// concatenates the row that matched the search arguments to the string returnString 
-					// along with a line break at the end
-					returnString += rowReceive + "\n";
+			// checks if columnName (argument) is "category_id" and if category_id data of current row matches 
+			// valueToFind (argument)
+			if(columnName == "category_id" && 
+				atoi(categoryID.c_str()) == atoi(valueToFind.c_str()))
+			{
+				// concatenates the row that matched the search arguments to the string returnString 
+				// along with a line break at the end
+				returnString += rowReceive + "\n";
 
-					resultFound = true;
-				}
+				resultFound = true;
+			}
 
-				// checks if columnName (argument) is "description" and if description data of current row matches
-				// valueToFind (argument)
-				else if(columnName == "description" && 
-					description == valueToFind)
-				{
-					// concatenates the row that matched the search arguments to the string returnString 
-					// along with a line break at the end
-					returnString += rowReceive + "\n";
+			// checks if columnName (argument) is "description" and if description data of current row matches
+			// valueToFind (argument)
+			else if(columnName == "description" && 
+				description == valueToFind)
+			{
+				// concatenates the row that matched the search arguments to the string returnString 
+				// along with a line break at the end
+				returnString += rowReceive + "\n";
 
-					resultFound = true;
-				}
-				// checks if columnName (argument) is "name" and if name data of current row matches
-				// valueToFind (argument)
-				else if(columnName == "name" &&
-					name == valueToFind)
-				{
-					// concatenates the row that matched the search arguments to the string returnString 
-					// along with a line break at the end
-					returnString += rowReceive + "\n";
+				resultFound = true;
+			}
+			// checks if columnName (argument) is "name" and if name data of current row matches
+			// valueToFind (argument)
+			else if(columnName == "name" &&
+				name == valueToFind)
+			{
+				// concatenates the row that matched the search arguments to the string returnString 
+				// along with a line break at the end
+				returnString += rowReceive + "\n";
 
-					resultFound = true;
-				}
+				resultFound = true;
 			}
 		}
-		// closes category.txt
-		categoryInFile.close();
-
-		if(!resultFound)
-			throw DoesNotExistException("Category Does Not Exist");
-
-		// \return returnString is returned as a result of the search function
-		return returnString;
-	} catch(DoesNotExistException e)
-	{
-		return e.what();
 	}
+	// closes category.txt
+	categoryInFile.close();
+
+	if(!resultFound)
+		throw DoesNotExistException("Category Does Not Exist");
+
+	// \return returnString is returned as a result of the search function
+	return returnString;
 }
 
 void Category :: deleteRow(string valueToFind)

@@ -1,6 +1,6 @@
 #include "Product.h"
 
-string Product :: add(vector<string> addVector) throw(AlreadyExistsException)
+void Product :: add(vector<string> addVector) throw(AlreadyExistsException)
 {
 	// list to retrieve all rows in the file, sort by product_id, then write back to the file
 	list<string> prodList;
@@ -23,66 +23,57 @@ string Product :: add(vector<string> addVector) throw(AlreadyExistsException)
 	string productDescription = addVector[2];
 	string productName = addVector[3];
 	string productPrice = addVector[4];
-	try
+	
+	// open the product.txt file
+	productInFile.open(productTextFile);
+
+	// ensure that the file is opened
+	if(productInFile.is_open())
 	{
-		// open the product.txt file
-		productInFile.open(productTextFile);
 
-		// ensure that the file is opened
-		if(productInFile.is_open())
+		// while loop continues as long as there is another line in the text file
+		while(productInFile.good())
 		{
+			// retrieves the next line in categoryInFile and assigns it to the string rowReceive
+			getline(productInFile, rowReceive);
 
-			// while loop continues as long as there is another line in the text file
-			while(productInFile.good())
+			// adds current row to the list
+			prodList.push_back(rowReceive);
+
+			// retrieves the category_ID as a substring of the entire row and sets it to the string categoryID
+			prodID = rowReceive.substr(0,rowReceive.find(delim));
+
+			// Checks if the product_id of the current row is equal to the productID to be added to the file
+			if(prodID == productID)
 			{
-				// retrieves the next line in categoryInFile and assigns it to the string rowReceive
-				getline(productInFile, rowReceive);
-
-				// adds current row to the list
-				prodList.push_back(rowReceive);
-
-				// retrieves the category_ID as a substring of the entire row and sets it to the string categoryID
-				prodID = rowReceive.substr(0,rowReceive.find(delim));
-
-				// Checks if the product_id of the current row is equal to the productID to be added to the file
-				if(prodID == productID)
-				{
-					throw AlreadyExistsException("Product ID already exists");
-				}
+				throw AlreadyExistsException("Product ID already exists");
 			}
 		}
-
-		// close product.txt file
-		productInFile.close();
-
-		// adds new product to list
-		prodList.push_back(productID + "|" + categoryID + "|" + productDescription + "|" + productName + "|" + productPrice);
-
-		// sort the list
-		prodList.sort();
-
-		// opens product.txt for output
-		productOutFile.open(productTextFile, ios_base::trunc);
-
-		// iterator for prodList
-		list<string>::iterator it;
-
-		// output all strings in prodList to the file
-		for(it = prodList.begin(); it != prodList.end(); ++it)
-		{
-			productOutFile<<*it<<endl;
-		}
-
-		// closes product.txt
-		productOutFile.close();
-
-		// returns a string notifying the user of a successful add
-		return "Product Added Successfully";
-
-	} catch(AlreadyExistsException e)
-	{
-		return e.what();
 	}
+
+	// close product.txt file
+	productInFile.close();
+
+	// adds new product to list
+	prodList.push_back(productID + "|" + categoryID + "|" + productDescription + "|" + productName + "|" + productPrice);
+
+	// sort the list
+	prodList.sort();
+
+	// opens product.txt for output
+	productOutFile.open(productTextFile, ios_base::trunc);
+
+	// iterator for prodList
+	list<string>::iterator it;
+
+	// output all strings in prodList to the file
+	for(it = prodList.begin(); it != prodList.end(); ++it)
+	{
+		productOutFile<<*it<<endl;
+	}
+
+	// closes product.txt
+	productOutFile.close();
 }
 
 string Product :: search(string columnName, string valueToFind) throw(DoesNotExistException)

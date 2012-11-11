@@ -6,7 +6,7 @@
 //            for Invoice, this will be a single value the date
 //            since invoice_id is automatically incremented
 // throws: nothing will be thrown because primary key is automatically incremented, thus no duplication
-string Invoice::add(vector<string> addVector) throw(AlreadyExistsException) {
+void Invoice::add(vector<string> addVector) throw(AlreadyExistsException) {
 
 	
 	ifstream infstream; // ifstream to be used to read invoice.txt
@@ -55,8 +55,6 @@ string Invoice::add(vector<string> addVector) throw(AlreadyExistsException) {
 	outfstream << invoice_id << "|" + date + "\n";
 
 	outfstream.close();
-
-	return "Invoice Added Successfully";
 }
 
 // Search function to find a specific row of data and return it as a string

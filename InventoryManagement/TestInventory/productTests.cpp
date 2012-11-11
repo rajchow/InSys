@@ -67,17 +67,17 @@ namespace TestInventory
 			prodVector.push_back("BBGummyWorms");
 			prodVector.push_back("1.98");
 
-			// calling the category add function
-			returnedString = prod->add(prodVector);
-			
-			// convert the returned string to a const char to output in the test log
-			const char *p;
-			p = returnedString.c_str();
-			Logger::WriteMessage(p);
-			
-			// assert that the return string matches the expected return string
-			// in this case the expected return is "Product ID already exists"
-			Assert::AreEqual(stringExpected, returnedString);
+			try{
+				// calling the category add function
+				prod->add(prodVector);
+				Assert::Fail(L"No exception for input",LINE_INFO());
+			} catch(AlreadyExistsException e)
+			{
+				// Correct exception caught
+			} catch(...) 
+			{
+				Assert::Fail(L"Wrong Exception Caught", LINE_INFO());
+			}
 		}
 
 		/// \brief Test that product class successfully adds a new product item

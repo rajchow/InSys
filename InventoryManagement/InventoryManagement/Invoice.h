@@ -36,7 +36,7 @@ public:
 	///            for Invoice, this will be a single value the date
 	///            since invoice_id is automatically incremented
 	/// \throw nothing will be thrown because primary key is automatically incremented, thus no duplication
-	string add(vector<string> addVector) throw (AlreadyExistsException);
+	void add(vector<string> addVector) throw (AlreadyExistsException);
 
 	string search(string columnName, string valueToFind) throw(DoesNotExistException);
 

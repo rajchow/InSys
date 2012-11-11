@@ -33,7 +33,7 @@ public:
 	/// \param[in] addVector is a vector of strings for the data to be entered
 	/// \return returns a string to notify the user whether the add was successful or not
 	/// \throw AlreadyExistsException when trying to add a primary key that already exists
-	virtual string add(vector<string> addVector) throw(AlreadyExistsException) = 0;
+	virtual void add(vector<string> addVector) throw(AlreadyExistsException) = 0;
 
 	/// \brief Search function to find a specific row of data and return it as a string
 	///
