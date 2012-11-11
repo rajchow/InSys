@@ -238,8 +238,9 @@ void Category :: deleteRow(string valueToFind)
 	// iterates through catFileVect and places each string from the vector into category.txt
 	for(int i = 0; i < (int) catFileVect.size(); i++)
 	{
-		// writes string from vector into category.txt
-		categoryOutFile<<catFileVect[i];
+		if(catFileVect[i].size() > 0)
+			// writes string from vector into category.txt
+			categoryOutFile<<catFileVect[i]<<endl;
 	}
 	
 	// closes category.txt

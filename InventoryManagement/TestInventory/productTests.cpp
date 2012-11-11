@@ -121,6 +121,5 @@ namespace TestInventory
 		TEST_METHOD(TestProductDelete)
 		{
 		}
-
 	};
 }

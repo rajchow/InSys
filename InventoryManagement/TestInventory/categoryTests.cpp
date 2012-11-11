@@ -205,6 +205,6 @@ namespace TestInventory
 			// in this case the expectation is "1|Description Modified|Name Modified\n"
 			Assert::AreEqual(expectedString,returnedString);
 		}
-
+		
 	};
 }
