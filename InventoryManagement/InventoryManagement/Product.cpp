@@ -230,7 +230,7 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 	}
 }
 
-void Product :: deleteRow(string columnName, string valueToFind)
+void Product :: deleteRow(string valueToFind)
 {
 	// assigns the value for the name of the textfile to be used
 	productTextFile = "textFiles/product.txt";

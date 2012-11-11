@@ -21,7 +21,7 @@ private:
 	///
 	/// Invoices should not be deleted from the database
 	/// because all filed invoices will be kept
-	void deleteRow(string columnName, string valueToFind);
+	void deleteRow(string valueToFind);
 
 public:
 

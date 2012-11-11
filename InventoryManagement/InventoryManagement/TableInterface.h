@@ -47,9 +47,8 @@ public:
 
 	/// \brief DeleteRow function to find a specific row of data and remove it from the file
 	///
-	/// \param[in] columnName identifies the name of the column to be searched
-	/// \param[in] valueToFind identifies the value to be searched for in the column
-	virtual void deleteRow(string columnName, string valueToFind) = 0;
+	/// \param[in] valueToFind identifies the value to be searched for in the primary key column
+	virtual void deleteRow(string valueToFind) = 0;
 
 	/// \brief Modify functionn to change the data in a given row
 	///

@@ -163,7 +163,7 @@ namespace TestInventory
 			string expectedString = "Category Does Not Exist";
 
 			// call the category delete function
-			cat->deleteRow("category_id","1");
+			cat->deleteRow("1");
 
 			// call the category search function to ensure that the category was successfully deleted
 			returnedString = cat->search("category_id", "1");

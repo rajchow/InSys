@@ -190,7 +190,7 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 	}
 }
 
-void Category :: deleteRow(string columnName, string valueToFind)
+void Category :: deleteRow(string valueToFind)
 {
 	// assigns the value for the name of the textfile to be used
 	categoryTextFile = "textFiles/category.txt";
@@ -249,11 +249,10 @@ void Category :: deleteRow(string columnName, string valueToFind)
 			// columnName (argument) = name and the valueToFind (argument) does not match the current 
 			//		row name value then the row is written to the vector
 			// 
-			// if the columnName (argument) and the valueToFind (argument) do match the current row
-			//		the row is skipped (ie - deleted) and not written to the vector
-			if((columnName == "category_id" && atoi(categoryID.c_str()) != atoi(valueToFind.c_str())) 
-				|| ((columnName == "description" && description != valueToFind)) 
-				|| ((columnName == "name" && name != valueToFind)))
+			// if the valueToFind (argument) does not match the current row
+			//		the row is written to the vector (if it does match
+			//		the row is skipped - deleted)
+			if(atoi(categoryID.c_str()) != atoi(valueToFind.c_str()))
 			{
 				catFileVect.push_back(rowReceive);
 			}

@@ -172,7 +172,7 @@ void Invoice::modifyRow(string valueToFind, string columnNameToModify, string va
 }
 
 // Invoices will not be allowed to be deleted
-void Invoice::deleteRow(string columnName, string valueToFind){}
+void Invoice::deleteRow(string valueToFind){}
 
 // Initializes fileName
 Invoice::Invoice() { fileName = "textfiles\\invoice.txt"; }
