@@ -91,7 +91,7 @@ namespace TestInventory
 				Assert::Fail(); // fail test if no exception is thrown
 			}
 			catch (exception DoesNotExistException) {} // continue if DoesNotExistException was thrown
-			catch (...) {}
+			catch (...) { Assert::Fail;} // Fail if something else is thrown
 		}
 		
 		/// \brief tests if the Invoice class can add a row to the Invoice table

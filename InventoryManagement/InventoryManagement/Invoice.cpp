@@ -111,7 +111,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 
 	// throws exception if nothing was found
 	if(returnString == "")
-		throw exception(); 
+		throw DoesNotExistException(valueToFind + " does not exist in column: " + columnName); 
 
 	return returnString;
 }
