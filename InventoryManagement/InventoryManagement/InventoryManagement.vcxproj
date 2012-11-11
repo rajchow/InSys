@@ -89,6 +89,7 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Product.h" />
+    <ClInclude Include="Summary.h" />
     <ClInclude Include="TableInterface.h" />
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +112,7 @@
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
     </ClCompile>
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Summary.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

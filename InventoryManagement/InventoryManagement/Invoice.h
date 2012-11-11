@@ -42,7 +42,6 @@ public:
 
 	void modifyRow(string valueToFind, string columnNameToModify, string valueOfModify);
 
-
 	/// \brief Destructor for Invoice
 	~Invoice();
 

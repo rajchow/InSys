@@ -69,7 +69,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 
 	ifstream infstream; // ifstream to be used to read invoice.txt
 
-	string returnString; // string used to store the value to be returned
+	string returnString = ""; // string used to store the value to be returned
 	string currentRow; // string used to store the current row
 	string invoice_id, date; //strings to store the invoice_id and date in the current row
 
@@ -85,6 +85,11 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 		while(infstream.good())
 		{
 			getline(infstream, currentRow);
+
+			// break when an empty string is assigned to currentRow
+			// which occurss if there are no more valid entries in the table
+			if (currentRow.empty())
+				break;
 
 			delimPos = currentRow.find('|'); // finds position of delimiter
 			
@@ -107,7 +112,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 	
 	infstream.close();
 
-	// throws exception if nothing was found
+	// throws DoesNotExistException if nothing was found
 	if(returnString == "")
 		throw DoesNotExistException(valueToFind + " does not exist in column: " + columnName); 
 
@@ -141,6 +146,11 @@ void Invoice::modifyRow(string valueToFind, string columnNameToModify, string va
 		while(infstream.good())
 		{
 			getline(infstream, currentRow); // store next line of textfile in currentRow
+			
+			// break when an empty string is assigned to currentRow
+			// which occurss if there are no more valid entries in the table
+			if (currentRow.empty())
+				break;
 
 			delimPos = currentRow.find('|'); // position of first delimiter '|'
 
@@ -177,4 +187,5 @@ Invoice::Invoice() { fileName = "textfiles\\invoice.txt"; }
 
 // Destructor
 Invoice::~Invoice(){}
+
 
