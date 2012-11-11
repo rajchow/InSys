@@ -117,5 +117,10 @@ namespace TestInventory
 			Assert::AreEqual(productExpected, productReturned);
 		}
 
+		/// \brief Test that the product class can successfully delete a product
+		TEST_METHOD(TestProductDelete)
+		{
+		}
+
 	};
 }

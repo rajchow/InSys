@@ -202,7 +202,7 @@ namespace TestInventory
 			Logger::WriteMessage(p);
 
 			// assert that the returned string matches the expected string
-			// in this case the expectation is "Category Does Not Exist"
+			// in this case the expectation is "1|Description Modified|Name Modified\n"
 			Assert::AreEqual(expectedString,returnedString);
 		}
 

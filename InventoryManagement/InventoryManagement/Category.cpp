@@ -192,13 +192,9 @@ void Category :: deleteRow(string valueToFind)
 
 	// string to contain the category_ID from a received row of data
 	string categoryID;
-	
-	//strings used to store the description and name values in a row
-	string description, name;
 
-	// ints to store the position of the first and second delimiters
+	// ints to store the position of the first delimiter
 	int delimiter;
-	int delimiter2;
 
 	// vector to store all rows of the file except the one to be deleted then to be rewritten to the file
 	vector<string> catFileVect;
@@ -220,30 +216,12 @@ void Category :: deleteRow(string valueToFind)
 
 			// finds the first delimiter position and assigns it to int delimiter
 			delimiter = rowReceive.find('|');
-			
-			// finds the second delimiter position and assigns it to int delimiter2
-			delimiter2 = rowReceive.find('|', delimiter+1);
 
 			// retrieves the category_ID from the row data and assigns it to categoryID
 			categoryID = rowReceive.substr(0,delimiter);
 
-			// retrieves the description from the row data and assigns it to string description
-			description = rowReceive.substr(delimiter+1, delimiter2-2);
-
-			// retrieves the name from the row data and assigns it to string name
-			name = rowReceive.substr(delimiter2+1);
-
-			// checks that if
-			// columnName (argument) = category_id and the valueToFind (argument) does not match the current 
-			//		row category_id value then the row is written to the vector
-			// columnName (argument) = description and the valueToFind (argument) does not match the current 
-			//		row description value then the row is written to the vector
-			// columnName (argument) = name and the valueToFind (argument) does not match the current 
-			//		row name value then the row is written to the vector
-			// 
-			// if the valueToFind (argument) does not match the current row
-			//		the row is written to the vector (if it does match
-			//		the row is skipped - deleted)
+			// checks that if the valueToFind (argument) does not match the current row
+			//		the row is written to the vector (if it does match the row is skipped - deleted)
 			if(atoi(categoryID.c_str()) != atoi(valueToFind.c_str()))
 			{
 				catFileVect.push_back(rowReceive);
@@ -261,7 +239,7 @@ void Category :: deleteRow(string valueToFind)
 	for(int i = 0; i < (int) catFileVect.size(); i++)
 	{
 		// writes string from vector into category.txt
-		categoryOutFile<<catFileVect[i]<<endl;
+		categoryOutFile<<catFileVect[i];
 	}
 	
 	// closes category.txt
@@ -345,8 +323,9 @@ void Category :: modifyRow(string valueToFind, string columnNameToModify, string
 	// iterates through catFileVect and places each string from the vector into category.txt
 	for(int i = 0; i < (int) catFileVect.size(); i++)
 	{
-		// writes string from vector into category.txt
-		categoryOutFile<<catFileVect[i]<<endl;
+		if(catFileVect[i].size() > 0)
+			// writes string from vector into category.txt
+			categoryOutFile<<catFileVect[i]<<endl;
 	}
 	
 	// closes category.txt

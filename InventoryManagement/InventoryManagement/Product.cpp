@@ -37,8 +37,9 @@ void Product :: add(vector<string> addVector) throw(AlreadyExistsException)
 			// retrieves the next line in categoryInFile and assigns it to the string rowReceive
 			getline(productInFile, rowReceive);
 
-			// adds current row to the list
-			prodList.push_back(rowReceive);
+			// adds current row to the list if it is not empty
+			if(rowReceive.size() != 0)
+				prodList.push_back(rowReceive);
 
 			// retrieves the category_ID as a substring of the entire row and sets it to the string categoryID
 			prodID = rowReceive.substr(0,rowReceive.find(delim));
