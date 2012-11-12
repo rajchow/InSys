@@ -192,7 +192,7 @@ namespace TestInventory
 			// call the category modify function to modify the name
 			cat->modifyRow("1","name","Name Modified");
 
-			// call the category search function to ensure that the category was successfully deleted
+			// call the category search function to ensure that the category was successfully modified
 			returnedString = cat->search("category_id", "1");
 
 			// convert the returned string to a const char to output in the test log
