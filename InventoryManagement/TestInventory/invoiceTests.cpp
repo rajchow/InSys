@@ -35,6 +35,7 @@ namespace TestInventory
 			ofstr.close();
 		}
 
+		/// \brief clean up after every test method
 		TEST_METHOD_CLEANUP(TearDown)
 		{
 			delete invoice;
@@ -81,7 +82,7 @@ namespace TestInventory
 		}
 
 		/// \brief tests if the Invoice class doesn't find a value it throws an exception
-		TEST_METHOD(TestInvoiceSearchDoesNotExist)
+		TEST_METHOD(TestInvoiceSearchValueDoesNotExist)
 		{
 			Logger::WriteMessage("TestInvoiceSearchValueDoesNotExist");
 			
@@ -118,7 +119,7 @@ namespace TestInventory
 			
 			Logger::WriteMessage("TestInvoiceModify");
 
-			invoice->modifyRow("4", "date", "2012-09-22");
+			invoice->modifyRow("4", "date", "2012-09-22"); // change date
 
 			string returned = invoice->search("date", "2012-09-22");
 

@@ -1,10 +1,11 @@
 #ifndef TABLEINTERFACE_H
 #define TABLEINTERFACE_H
 
+#pragma warning( disable : 4290 )
+
 /* Standard C++ headers */
 #include <iostream>
 #include <sstream>
-#include <iostream>
 #include <fstream>
 #include <memory>
 #include <string>
@@ -13,6 +14,7 @@
 #include <list>
 #include <algorithm>
 
+/*Exceptions*/
 #include "AlreadyExistsException.h"
 #include "DoesNotExistException.h"
 

@@ -8,7 +8,6 @@
 // throws: nothing will be thrown because primary key is automatically incremented, thus no duplication
 void Invoice::add(vector<string> addVector) throw(AlreadyExistsException) {
 
-	
 	ifstream infstream; // ifstream to be used to read invoice.txt
 	ofstream outfstream; // ofstream to be used to write to invoice.txt
 
@@ -122,7 +121,8 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 // Modify function to change the data in a given row
 //
 // Modification will be done by searching by the primary key of the table (invoice_id)
-// preconditon: Row exists. This will be checked by the main program beforehand
+// Only date will be modified
+// preconditon: Row exists. This will be checked by the main program beforehand.
 // param[in]: valueToFind identifies the value to be searched in the primary key column
 // param[in]: columnNameToModify identifies the column to change data for
 // prama[in]: valueOfModify provides the new data for the desired column
@@ -133,8 +133,8 @@ void Invoice::modifyRow(string valueToFind, string columnNameToModify, string va
 	vector<string> fileVector; // string vector to store each line of the invoice.txt file
 
 	string currentRow; // string to store the current row in the table
-	string date; //string to store date of line to be modified
-	string invoice_id; //string to store invoice_id of line to be modified
+	string date; //string to store date of current row in the tabled
+	string invoice_id; //string to store invoice_id of current row in the table
 	int delimPos; // position in the line of delimiter
 
 	infstream.open(fileName);

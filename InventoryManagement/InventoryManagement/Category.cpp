@@ -125,7 +125,7 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 			categoryID = rowReceive.substr(0,delimiter);
 
 			// retrieves the description from the row data and assigns it to string description
-			description = rowReceive.substr(delimiter+1, delimiter2-2);
+			description = rowReceive.substr(delimiter+1, delimiter2-delimiter-1);
 
 			// retrieves the name from the row data and assigns it to string name
 			name = rowReceive.substr(delimiter2+1);
@@ -281,7 +281,7 @@ void Category :: modifyRow(string valueToFind, string columnNameToModify, string
 			categoryID = rowReceive.substr(0,delimiter);
 
 			// retrieves the description from the row data and assigns it to string description
-			description = rowReceive.substr(delimiter+1, delimiter2-2);
+			description = rowReceive.substr(delimiter+1, delimiter2-delimiter-1);
 
 			// retrieves the name from the row data and assigns it to string name
 			name = rowReceive.substr(delimiter2+1);

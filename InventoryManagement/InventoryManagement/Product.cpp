@@ -131,13 +131,13 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 				productID = rowReceive.substr(0,delimiter);
 
 				// retrieves the category_ID from the row data and assigns it to categoryID
-				categoryID = rowReceive.substr(delimiter+1, delimiter2-2);
+				categoryID = rowReceive.substr(delimiter+1, delimiter2-delimiter-1);
 
 				// retrieves the product description from the row data and assigns it to productDescription
-				productDescription = rowReceive.substr(delimiter2+1, delimiter3-2);
+				productDescription = rowReceive.substr(delimiter2+1, delimiter3-delimiter2-1);
 
 				// retrieves the product name from the row data and assigns it to productName
-				productName = rowReceive.substr(delimiter3+1, delimiter4-2);
+				productName = rowReceive.substr(delimiter3+1, delimiter4-delimiter3-1);
 
 				// retrieves the price from the row data and assigns it to productPrice
 				productPrice = rowReceive.substr(delimiter4+1);

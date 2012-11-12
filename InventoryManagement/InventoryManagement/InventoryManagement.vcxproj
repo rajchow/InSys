@@ -85,6 +85,7 @@
     <ClInclude Include="Category.h" />
     <ClInclude Include="DoesNotExistException.h" />
     <ClInclude Include="Invoice.h" />
+    <ClInclude Include="InvoiceItem.h" />
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -95,6 +96,7 @@
   <ItemGroup>
     <ClCompile Include="Category.cpp" />
     <ClCompile Include="Invoice.cpp" />
+    <ClCompile Include="InvoiceItem.cpp" />
     <ClCompile Include="MyForm.cpp">
       <CompileAsManaged Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</CompileAsManaged>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

@@ -33,17 +33,6 @@ namespace TestInventory
 			ofstr << "1003|0\n";
 		
 			ofstr.close();
-
-			ofstr.open("textfiles\\product.txt", ios_base::trunc); // clear Product table
-
-			// Set up product data for testing
-			
-			ofstr << "1425|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\n";
-			ofstr << "2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n";
-			ofstr << "1002|2|250g bag Budget Brand Regular Tortilla Chips|BBRegTortillaChip|2.24\n";
-			ofstr << "1003|2|250g bag Budget Brand Ketchup Potato Chips|BBKetPotatoChip|2.24\n";
-
-			ofstr.close();
 		}
 
 		/// \brief clean up after every test method
@@ -149,7 +138,7 @@ namespace TestInventory
 			
 			Logger::WriteMessage("TestSummaryModify");
 
-			summary->modifyRow("1002", "total_quantity", "99");
+			summary->modifyRow("1002", "total_quantity", "99"); // change total quantity
 
 			string returned = summary->search("total_quantity", "99");
 
@@ -159,7 +148,7 @@ namespace TestInventory
 			
 		}
 
-		/// \brief tests if Summary class can delete a row in the /tabke
+		/// \brief tests if Summary class can delete a row in the table
 		TEST_METHOD(TestSummaryDelete)
 		{
 			Logger::WriteMessage("TestSummaryDelete");
