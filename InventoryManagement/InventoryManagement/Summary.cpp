@@ -147,9 +147,6 @@ void Summary::deleteRow(string valueToFind) {
 
 	infstream.open(fileName);
 
-	ofstream test;
-	test.open("test.txt");
-
 	if(infstream.is_open())
 	{
 		// while loop continues as long as there is another line in the text file
@@ -167,8 +164,6 @@ void Summary::deleteRow(string valueToFind) {
 
 			product_id = currentRow.substr(0,delimPos); // stores substring before '|' in product_id
 			total_quantity = currentRow.substr(delimPos + 1); // store substring after '|' in total_quantity
-
-			test << "(" << product_id << "|" << total_quantity << ")";
 
 			if (product_id != valueToFind)
 				fileVector.push_back(product_id + "|" + total_quantity + "\n");
