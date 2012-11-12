@@ -1,7 +1,7 @@
 #include "InvoiceItem.h"
 
 void InvoiceItem::add(vector<string> addVector) throw (AlreadyExistsException) {
-ifstream infstream; // ifstream to be used to read invoiceItem.txt
+	ifstream infstream; // ifstream to be used to read invoiceItem.txt
 	ofstream outfstream; // ofstream to be used to write to invoiceItem.txt
 
 	int invoice_item_id = 0; // int used to store the highest invoice__item_id so far
@@ -48,6 +48,36 @@ ifstream infstream; // ifstream to be used to read invoiceItem.txt
 	outfstream << invoice_item_id << "|" + product_id + "|" + quantity + "\n";
 
 	outfstream.close();
+
+	Table summary = new Summary(); // Summary class obj used to add product quantities to Summmary Table
+
+	try {
+		// search for product_id in Summary table and store in current row
+		currentRow = summary->search("product_id", product_id);
+
+		// Update the product_id's quantity in the summary table if it exists
+		delimPos = currentRow.find('|'); // find delimiter in returned row from Summary
+
+		string total_quantity; // total_quantity of product in Summary table
+
+		product_id = currentRow.substr(0, delimPos); // product_id of row in Summary Table
+		total_quantity = currentRow.substr(delimPos + 1); // total quantity of row in Summary table
+
+		stringstream totalQuantity; //stringstream to convert int to string
+
+		// Add Invoice Item's quantity to total_quantity in Summary
+		// then output to stringstream totalQuantity
+		totalQuantity << atoi(total_quantity.c_str()) + atoi(quantity.c_str());
+		
+		// change the total_quantity in summary using the stringstream totalQuantity
+		summary->modifyRow(product_id, "total_quantity", totalQuantity.str());
+	}
+	catch (DoesNotExistException e) { // add new product to summary if it doesn't exist there yet
+		summary->add(addVector); //addVector is also product_id and quantity (total_quantity in Summary)
+		
+	}
+
+	delete summary;
 }
 
 string InvoiceItem::search(string columnName, string valueToFind) throw(DoesNotExistException) { 

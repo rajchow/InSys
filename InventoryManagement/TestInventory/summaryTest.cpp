@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "..\InventoryManagement\Summary.cpp"
+#include "..\InventoryManagement\Summary.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 

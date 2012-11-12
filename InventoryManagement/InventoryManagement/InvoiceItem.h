@@ -2,6 +2,7 @@
 #define INVOICEITEM_H
 
 #include "TableInterface.h"
+#include "Summary.h"
 
 /// \brief Class for interacting with the InvoiceItem table
 ///
@@ -10,6 +11,8 @@
 /// - Add a row to the InvoiceItem table
 /// - Search for a row in the InvoiceItem table
 /// - Modify a row in the InvoiceItem table
+/// - Ensure that a new product is added to Summary table when a new product is received
+/// - Ensure that changes to existing product quantities are updated in the Summary table
 /// - Connect and disconnect from the database
 class InvoiceItem : public TableInterface {
 private:
@@ -36,6 +39,7 @@ public:
 	///            for InvoiceItem. This will be values for 
 	///            product_id and quantity in that order
 	/// \throw nothing will be thrown because primary key is automatically incremented, thus no duplication
+	/// \post total_quantity in Summary table is appropriately modified
 	void add(vector<string> addVector) throw (AlreadyExistsException);
 
 	string search(string columnName, string valueToFind) throw(DoesNotExistException);

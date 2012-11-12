@@ -1,8 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
-#include "../InventoryManagement/TableInterface.h"
+
 #include "../InventoryManagement/Product.h"
-#include "../InventoryManagement/Product.cpp"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 using namespace std;

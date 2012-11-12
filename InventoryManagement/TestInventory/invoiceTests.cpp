@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "..\InventoryManagement\Invoice.cpp"
+#include "..\InventoryManagement\Invoice.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -92,7 +92,7 @@ namespace TestInventory
 				Assert::Fail(); // fail test if no exception is thrown
 			}
 			catch (exception DoesNotExistException) {} // continue if DoesNotExistException was thrown
-			catch (...) { Assert::Fail;} // Fail if something else is thrown
+			catch (...) { Assert::Fail();} // Fail if something else is thrown
 		}
 		
 		/// \brief tests if the Invoice class can add a row to the Invoice table

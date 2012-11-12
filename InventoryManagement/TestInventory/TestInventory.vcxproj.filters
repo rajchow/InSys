@@ -41,5 +41,8 @@
     <ClCompile Include="invoiceItemTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="invoiceItemWithSummaryTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
