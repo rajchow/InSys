@@ -11,6 +11,7 @@
 /// - Delete a row to the Category table
 /// - Search for a row in the Category table
 /// - Modify a row in the Category table
+/// - Connect and disconnect from the database
 class Category : public TableInterface
 {
 private:

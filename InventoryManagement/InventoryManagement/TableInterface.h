@@ -11,6 +11,7 @@
 #include <stdexcept>
 #include <vector>
 #include <list>
+#include <algorithm>
 
 #include "AlreadyExistsException.h"
 #include "DoesNotExistException.h"
@@ -25,6 +26,7 @@ using namespace std;
 /// - Search for a row in a table of the database
 /// - Delete a row in a table of the database
 /// - Modify a row in a table of the database
+/// - Connect and disconnect from the database
 class TableInterface
 {
 public:
@@ -47,12 +49,18 @@ public:
 
 	/// \brief DeleteRow function to find a specific row of data and remove it from the file
 	///
+	/// Deletion will by done by finding the a matching value by searching for valueToFind
+	/// in the primary key column of the table 
+	/// \pre Row exists. This will be checked by the main program beforehand
 	/// \param[in] valueToFind identifies the value to be searched for in the primary key column
 	virtual void deleteRow(string valueToFind) = 0;
 
-	/// \brief Modify functionn to change the data in a given row
+	/// \brief Modify function to change the data in a given row
 	///
-	/// \param[in] valueToFind identifies the value to be searched for in the column
+	/// Modification will be done by finding a matching value by searching for valueToFind
+	/// in the primary key column of the table
+	/// \pre Row exists. This will be checked by the main program beforehand
+	/// \param[in] valueToFind identifies the value to be searched for in the primary key
 	/// \param[in] columnNameToModify identifies the column to change data for
 	/// \prama[in] valueOfModify provides the new data for the desired column
 	virtual void modifyRow(string valueToFind, string columnNameToModify, string valueOfModify) = 0;

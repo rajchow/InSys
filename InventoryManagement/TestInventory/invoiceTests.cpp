@@ -85,7 +85,7 @@ namespace TestInventory
 		{
 			Logger::WriteMessage("TestInvoiceSearchValueDoesNotExist");
 			
-			// tests if exception is thrown by making sure 
+			// tests if DoesNotExistException is thrown
 			try {
 				string returned = invoice->search("invoice_id", "99999");
 				Assert::Fail(); // fail test if no exception is thrown

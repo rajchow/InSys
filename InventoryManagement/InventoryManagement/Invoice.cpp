@@ -27,7 +27,7 @@ void Invoice::add(vector<string> addVector) throw(AlreadyExistsException) {
 		// finds the highest invoice_id in the file and stores it in invoice_id
 		while(infstream.good())
 		{
-			getline(infstream, currentRow);
+			getline(infstream, currentRow); // store next line of textfile in currentRow
 
 			// Searches for the position of the delimiter
 			delimPos = currentRow.find('|');
@@ -84,7 +84,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 		// while loop continues as long as there is another line in the text file
 		while(infstream.good())
 		{
-			getline(infstream, currentRow);
+			getline(infstream, currentRow); // store next line of textfile in currentRow
 
 			// break when an empty string is assigned to currentRow
 			// which occurss if there are no more valid entries in the table
@@ -98,7 +98,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 
 			// if searching by invoice_id
 			if(columnName == "invoice_id" && 
-				atoi(invoice_id.c_str()) == atoi(valueToFind.c_str())) {
+				invoice_id == valueToFind) {
 				returnString = currentRow + "\n"; //since invoice_id is unique returns current row
 				break;
 			}
@@ -119,7 +119,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 	return returnString;
 }
 
-// Modify functionn to change the data in a given row
+// Modify function to change the data in a given row
 //
 // Modification will be done by searching by the primary key of the table (invoice_id)
 // preconditon: Row exists. This will be checked by the main program beforehand
@@ -127,7 +127,6 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 // param[in]: columnNameToModify identifies the column to change data for
 // prama[in]: valueOfModify provides the new data for the desired column
 void Invoice::modifyRow(string valueToFind, string columnNameToModify, string valueOfModify) {
-
 
 	ifstream infstream; // ifstream to be used to read invoice.txt
 	ofstream outfstream; // ofstream to be used to write to invoice.txt	
@@ -187,5 +186,3 @@ Invoice::Invoice() { fileName = "textfiles\\invoice.txt"; }
 
 // Destructor
 Invoice::~Invoice(){}
-
-

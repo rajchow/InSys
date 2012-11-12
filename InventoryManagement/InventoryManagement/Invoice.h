@@ -10,6 +10,7 @@
 /// - Add a row to the Invoice table
 /// - Search for a row in the Invoice table
 /// - Modify a row in the Invoice table
+/// - Connect and disconnect from the database
 class Invoice : public TableInterface {
 
 private:
@@ -46,6 +47,5 @@ public:
 	~Invoice();
 
 };
-
 
 #endif

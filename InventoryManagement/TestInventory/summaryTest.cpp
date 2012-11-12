@@ -89,7 +89,7 @@ namespace TestInventory
 		{
 			Logger::WriteMessage("TestSummarySearchValueDoesNotExist");
 			
-			// tests if exception is thrown by making sure 
+			// tests if DoesNotExistException is thrown 
 			try {
 				string returned = summary->search("product_id", "99999");
 				Assert::Fail(); // fail test if no exception is thrown
@@ -141,6 +141,43 @@ namespace TestInventory
 				Logger::WriteMessage(e.what());
 			} 
 			catch (...) { Assert::Fail();} // Fail if something else is thrown
+		}
+
+		/// \brief tests if Summary class can modify a row in the Table
+		TEST_METHOD(TestSummaryModify)
+		{
+			
+			Logger::WriteMessage("TestSummaryModify");
+
+			summary->modifyRow("1002", "total_quantity", "99");
+
+			string returned = summary->search("total_quantity", "99");
+
+			Logger::WriteMessage(returned.c_str());
+
+			Assert::AreEqual("1002|99\n", returned.c_str());
+			
+		}
+
+		/// \brief tests if Summary class can delete a row in the /tabke
+		TEST_METHOD(TestSummaryDelete)
+		{
+			Logger::WriteMessage("TestSummaryDelete");
+
+			summary->deleteRow("2543");
+
+			// tests if DoesNotExistException is thrown, which means product_id no longer exists
+			try {
+				string returned = summary->search("product_id", "2543");
+				Assert::Fail(); // fail test if no exception is thrown
+			}
+			catch (DoesNotExistException e) { // continue if DoesNotExistException was thrown
+				Logger::WriteMessage(e.what());
+			} 
+			catch (...) { // Fail if something else is thrown
+				Logger::WriteMessage("Other exception");
+				Assert::Fail(); 
+			}
 		}
 	};
 }

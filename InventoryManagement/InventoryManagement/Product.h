@@ -11,6 +11,7 @@
 /// - Delete a row to the Product table
 /// - Search for a row in the Product table
 /// - Modify a row in the Product table
+/// - Connect and disconnect from the database
 class Product : public TableInterface
 {
 private:
