@@ -42,6 +42,9 @@
     <ClInclude Include="InvoiceItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Orders.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Category.cpp">
@@ -60,6 +63,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="InvoiceItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Orders.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

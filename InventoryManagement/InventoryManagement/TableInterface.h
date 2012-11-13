@@ -64,7 +64,7 @@ public:
 	/// \pre Row exists. This will be checked by the main program beforehand
 	/// \param[in] valueToFind identifies the value to be searched for in the primary key
 	/// \param[in] columnNameToModify identifies the column to change data for
-	/// \prama[in] valueOfModify provides the new data for the desired column
+	/// \param[in] valueOfModify provides the new data for the desired column
 	virtual void modifyRow(string valueToFind, string columnNameToModify, string valueOfModify) = 0;
 
 	/// Virtual destructor for TableInterface

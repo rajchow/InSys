@@ -125,7 +125,7 @@ string Invoice::search(string columnName, string valueToFind) throw(DoesNotExist
 // preconditon: Row exists. This will be checked by the main program beforehand.
 // param[in]: valueToFind identifies the value to be searched in the primary key column
 // param[in]: columnNameToModify identifies the column to change data for
-// prama[in]: valueOfModify provides the new data for the desired column
+// param[in]: valueOfModify provides the new data for the desired column
 void Invoice::modifyRow(string valueToFind, string columnNameToModify, string valueOfModify) {
 
 	ifstream infstream; // ifstream to be used to read invoice.txt
