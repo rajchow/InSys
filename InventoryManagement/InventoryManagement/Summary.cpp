@@ -188,9 +188,10 @@ void Summary::deleteRow(string valueToFind) {
 // preconditon: Row exists. This will be checked by the main program beforehand
 // param[in]: valueToFind identifies the value to be searched in the primary key column
 // param[in]: columnNameToModify identifies the column to change data for
-// param[in]: valueOfModify provides the new data for the desired column
+// prama[in]: valueOfModify provides the new data for the desired column
 // postcondition: Summary table is sorted by product_id
 void Summary::modifyRow(string valueToFind, string columnNameToModify, string valueOfModify) {
+	
 
 	ifstream infstream; // ifstream to be used to read summary.txt
 	ofstream outfstream; // ofstream to be used to write to summary.txt	
@@ -224,12 +225,7 @@ void Summary::modifyRow(string valueToFind, string columnNameToModify, string va
 			// and push_back the modified string into fileVector
 			// otherwise push_back the same string into fileVector
 			if (product_id == valueToFind)
-			{
-				if (columnNameToModify == "total_quantity") // modify total_quantity
-					fileVector.push_back(product_id + "|" + valueOfModify + "\n");
-				else if (columnNameToModify == "product_id") // modify product_id
-					fileVector.push_back(valueOfModify + "|" + total_quantity + "\n");
-			}
+				fileVector.push_back(product_id + "|" + valueOfModify + "\n");
 			else
 				fileVector.push_back(product_id + "|" + total_quantity + "\n");
 		}

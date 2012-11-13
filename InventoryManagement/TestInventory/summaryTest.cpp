@@ -132,11 +132,11 @@ namespace TestInventory
 			catch (...) { Assert::Fail();} // Fail if something else is thrown
 		}
 
-		/// \brief tests if Summary class can modify total_quantity of a row in the Table
-		TEST_METHOD(TestSummaryModifyTotalQuantity)
+		/// \brief tests if Summary class can modify a row in the Table
+		TEST_METHOD(TestSummaryModify)
 		{
 			
-			Logger::WriteMessage("TestSummaryModifyTotalQuantity");
+			Logger::WriteMessage("TestSummaryModify");
 
 			summary->modifyRow("1002", "total_quantity", "99"); // change total quantity
 
@@ -145,22 +145,6 @@ namespace TestInventory
 			Logger::WriteMessage(returned.c_str());
 
 			Assert::AreEqual("1002|99\n", returned.c_str());
-			
-		}
-
-		/// \brief tests if Summary class can modify product_id of a row in the Table
-		TEST_METHOD(TestSummaryModifyProductID)
-		{
-			
-			Logger::WriteMessage("TestSummaryModifyProductID");
-
-			summary->modifyRow("1002", "product_id", "9999"); // change product id
-
-			string returned = summary->search("product_id", "9999");
-
-			Logger::WriteMessage(returned.c_str());
-
-			Assert::AreEqual("9999|50\n", returned.c_str());
 			
 		}
 

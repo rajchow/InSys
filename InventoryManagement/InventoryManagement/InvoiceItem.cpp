@@ -1,11 +1,5 @@
 #include "InvoiceItem.h"
 
-//Add function to insert data into the invoice item text file
-// parameter[in]: addVector is a vector of strings for the data to be entered
-//            for InvoiceItem. This will be values for 
-//            product_id and quantity in that order
-// throw: nothing will be thrown because primary key is automatically incremented, thus no duplication
-// postcondition: total_quantity in Summary table is appropriately modified
 void InvoiceItem::add(vector<string> addVector) throw (AlreadyExistsException) {
 	ifstream infstream; // ifstream to be used to read invoiceItem.txt
 	ofstream outfstream; // ofstream to be used to write to invoiceItem.txt
@@ -80,19 +74,12 @@ void InvoiceItem::add(vector<string> addVector) throw (AlreadyExistsException) {
 	}
 	catch (DoesNotExistException e) { // add new product to summary if it doesn't exist there yet
 		summary->add(addVector); //addVector is also product_id and quantity (total_quantity in Summary)
+		
 	}
 
 	delete summary;
 }
 
-// Search function to find a specific row of data and return it as a string
-//
-// parameter[in]: columnName identifies the name of the column to be searched
-// parameter[in]: valueToFind identifies the value to be searched for in the column
-// return: a string which contains a concatenation of all values in the row found in the database table
-//         if multiple values exist, return all rows with that value, where
-//         each row is separated by a new line
-// throw: DoesNotExistException when trying to find a row that doesn't exist
 string InvoiceItem::search(string columnName, string valueToFind) throw(DoesNotExistException) { 
 
 	ifstream infstream; // ifstream to be used to read invoiceItem.txt
@@ -156,15 +143,6 @@ string InvoiceItem::search(string columnName, string valueToFind) throw(DoesNotE
 	return returnString;
 }
 	
-// Modify function to change the data in a given row
-// Modification will be done by finding a matching value by searching for valueToFind
-// in the primary key (invoice_item_id) column of the table. Only product_id and quantity
-// can by modified.
-// precondition: Row exists. This will be checked by the main program beforehand
-// parameter[in]: valueToFind identifies the value to be searched for in the primary key
-// parameter[in]: columnNameToModify identifies the column to change data for
-// parameter[in]: valueOfModify provides the new data for the desired column
-// postcondition: total_quantity in Summary table is modified when quantity is modified
 void InvoiceItem::modifyRow(string valueToFind, string columnNameToModify, string valueOfModify) {
 	
 	ifstream infstream; // ifstream to be used to read invoiceItem.txt
@@ -175,10 +153,9 @@ void InvoiceItem::modifyRow(string valueToFind, string columnNameToModify, strin
 	string invoice_item_id; //string to store invoice_item_id of currrent row
 	string product_id; //string to store product_id of current row
 	string quantity; //string to store quantity of current row
-	string summaryProduct_id; //string to store the product_id to modify the summary table
 
 	int delimPos1, delimPos2; // position of delimiters in current row
-	int differenceInQuantity; // int to store the difference between quantity and valueOfModify
+
 
 	infstream.open(fileName);
 
@@ -212,13 +189,7 @@ void InvoiceItem::modifyRow(string valueToFind, string columnNameToModify, strin
 				if (columnNameToModify == "product_id") // modify product_id
 					fileVector.push_back(invoice_item_id + "|" + valueOfModify + "|" + quantity + "\n");
 				else if (columnNameToModify == "quantity") // modify quantity
-				{
 					fileVector.push_back(invoice_item_id + "|" + product_id + "|" + valueOfModify + "\n");
-
-					// store valueOfModify - quantityin differenceInQuantity
-					differenceInQuantity =  atoi(valueOfModify.c_str()) - atoi(quantity.c_str());
-					summaryProduct_id = product_id; //store the modified row's product_id to summaryProduct_id
-				}
 			}
 			else
 				fileVector.push_back(invoice_item_id + "|" + product_id + "|" +  quantity + "\n");
@@ -235,42 +206,10 @@ void InvoiceItem::modifyRow(string valueToFind, string columnNameToModify, strin
 		outfstream << fileVector[i];
 	
 	outfstream.close();
-
-	// change summary's total quantity if invoice item's quantity is changed
-	if (columnNameToModify == "quantity")
-	{
-	Table summary = new Summary(); // Summary class obj used to change product quantities in Summmary Table
-
-	// search for product_id in Summary table and store in current row
-	currentRow = summary->search("product_id", summaryProduct_id); // product_id will always exist
-
-	// Update the product_id's quantity in the summary table
-	delimPos1 = currentRow.find('|'); // find delimiter in returned row from Summary
-
-	string total_quantity; // total_quantity of product in Summary table
-
-	summaryProduct_id = currentRow.substr(0, delimPos1); // product_id of row in Summary Table
-	total_quantity = currentRow.substr(delimPos1 + 1); // total quantity of row in Summary table
-
-	stringstream totalQuantity; //stringstream to convert int to string
-
-	// Add InvoiceItem's differenceInQuantity to total_quantity in Summary
-	// then output to stringstream totalQuantity
-	totalQuantity << atoi(total_quantity.c_str()) + differenceInQuantity;
-		
-	// change the total_quantity in summary using the stringstream totalQuantity
-	summary->modifyRow(summaryProduct_id, "total_quantity", totalQuantity.str());
-
-	delete summary;
-	}
 }
 
-// Invoice Items should not be deleted from the database
-// because all filed invoices will be kept
 void InvoiceItem::deleteRow(string valueToFind) {}
 
-// default constructor initialize fileName
 InvoiceItem::InvoiceItem() { fileName = "textfiles\\invoiceItem.txt"; }
 
-// destructor
 InvoiceItem::~InvoiceItem() {};

@@ -133,11 +133,7 @@ namespace TestInventory
 		{
 			Logger::WriteMessage("TestInvoiceItemModifyQuantity");
 
-			try { // allow to be able to test invoiceItem in isolation
 			invoiceItem->modifyRow("102", "quantity", "9001"); // change 102's quantity to 9001
-			}
-			catch (DoesNotExistException e) { // catches Summary's failed search and allows it
-			}
 
 			string returned = invoiceItem->search("invoice_item_id", "102");
 

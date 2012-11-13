@@ -89,7 +89,6 @@
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="Orders.h" />
     <ClInclude Include="Product.h" />
     <ClInclude Include="Summary.h" />
     <ClInclude Include="TableInterface.h" />
@@ -114,7 +113,6 @@
       <DebugInformationFormat Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">ProgramDatabase</DebugInformationFormat>
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
     </ClCompile>
-    <ClCompile Include="Orders.cpp" />
     <ClCompile Include="Product.cpp" />
     <ClCompile Include="Summary.cpp" />
   </ItemGroup>

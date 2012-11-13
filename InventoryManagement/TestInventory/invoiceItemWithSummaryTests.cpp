@@ -112,27 +112,5 @@ namespace TestInventory
 		}
 
 		
-		/// \brief Test modifying invoice_item's quantity updates product's quantity in Summary
-		TEST_METHOD(TestInvoiceItemModifyQuantityUpdatesQuantityInSummary)
-		{
-			// Log test name
-			Logger::WriteMessage("TestInvoiceItemModifyQuantityUpdatesQuantityInSummary");
-
-			invoiceItem2->modifyRow("1011", "quantity", "30"); //increase by 20
-
-			// string to store invoiceItem's search for invoice_item_id 1014
-			string invoiceItemReturned = invoiceItem2->search("invoice_item_id", "1011");
-			// string to store summary's search for product_id 1002
-			string summaryReturned = summary2->search("product_id", "2543");
-
-			// Log results
-			Logger::WriteMessage(invoiceItemReturned.c_str());
-			Logger::WriteMessage(summaryReturned.c_str());
-
-			// Check that invoice item's quantity was modified correctly
-			Assert::AreEqual("1011|2543|30\n", invoiceItemReturned.c_str());
-			// Check that summary is updated with right quantity
-			Assert::AreEqual("2543|220\n", summaryReturned.c_str()); //200 + 20
-		}
 	};
 }
