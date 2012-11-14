@@ -1,6 +1,9 @@
 #pragma once
 #include "TableInterface.h"
 #include "Category.h"
+#include "Sales.h"
+#include "Product.h"
+#include "Receipt.h"
 #include <msclr/marshal.h>
 #include <msclr/marshal_cppstd.h>
 
@@ -87,8 +90,6 @@ namespace InventoryManagement {
 	private: System::Windows::Forms::Label^  lblCategoryName;
 	private: System::Windows::Forms::TextBox^  txtCategoryName;
 	private: System::Windows::Forms::ComboBox^  cmbCategorySelect;
-
-
 
 	private: System::Windows::Forms::ComboBox^  cmbCategoryFunction;
 	private: System::Windows::Forms::TabPage^  tpProduct;
@@ -659,6 +660,7 @@ namespace InventoryManagement {
 			this->btnSalesModify->TabIndex = 34;
 			this->btnSalesModify->Text = L"Modify";
 			this->btnSalesModify->UseVisualStyleBackColor = true;
+			this->btnSalesModify->Click += gcnew System::EventHandler(this, &MyForm::btnSalesModify_Click);
 			// 
 			// btnSalesCreateReceipt
 			// 
@@ -762,6 +764,7 @@ namespace InventoryManagement {
 			this->cmbSalesProductSelect->Name = L"cmbSalesProductSelect";
 			this->cmbSalesProductSelect->Size = System::Drawing::Size(491, 21);
 			this->cmbSalesProductSelect->TabIndex = 12;
+			this->cmbSalesProductSelect->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::cmbSalesSelect_SelectedIndexChanged);
 			// 
 			// label1
 			// 
@@ -775,7 +778,7 @@ namespace InventoryManagement {
 			// cmbSalesFunction
 			// 
 			this->cmbSalesFunction->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cmbSalesFunction->Items->AddRange(gcnew cli::array< System::Object^  >(2) {L"Add", L"Modify"});
+			this->cmbSalesFunction->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"Add", L"Modify", L"Search"});
 			this->cmbSalesFunction->Location = System::Drawing::Point(7, 27);
 			this->cmbSalesFunction->Name = L"cmbSalesFunction";
 			this->cmbSalesFunction->Size = System::Drawing::Size(114, 21);
@@ -1253,37 +1256,77 @@ namespace InventoryManagement {
 	private: System::Void cmbSalesFunction_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 				 if(cmbSalesFunction->SelectedIndex == 0)
 				 {
+					
+					 // Label "quantity sold:" set to visible
+					lblSaleProductQuantity->Visible = true;
+					 // Textbox for quantity sold set to visible
+					 txtSalesProductQuantity->Visible = true;
+					 // Label "discount:" set to visible
+					 lblSalesProductDiscount->Visible = true;
+					 // Textbox for discount set to visible
+					 txtSalesProductDiscount->Visible = true;
+					 // "Add" button set to visible
+					 btnSalesAddProduct->Visible = true;
+					 // "Modify" button set to invisible
+					 btnSalesModify->Visible = false;
+					 // Label "sales:" set to visible
+					 lblSalesProductSelect->Visible = false;
+					 // Combobox for sales selection set to invisible
+					 cmbSalesProductSelect->Visible = false;
+					 // enables textboxes
+					 txtSalesProductQuantity->Enabled = true;
+					 txtSalesProductDiscount->Enabled = true;
+					 
 					 lblSalesReceiptSelect->Visible = false;
 					 cmbSalesReceiptSelect->Visible = false;
-					 lblSalesProductSelect->Visible = true;
-					 cmbSalesProductSelect->Visible = true;
-					 lblSaleProductQuantity->Visible = true;
-					 txtSalesProductQuantity->Visible = true;
-					 lblSalesProductDiscount->Visible = true;
-					 txtSalesProductDiscount->Visible = true;
-					 btnSalesAddProduct->Visible = true;
-					 lstSalesProducts->Visible = true;
-					 btnSalesRemoveProduct->Visible = true;
-					 dtSalesReceiptDate->Visible = true;
-					 btnSalesCreateReceipt->Visible = true;
-					 btnSalesModify->Visible = false;
+
+
 				 } else if(cmbSalesFunction->SelectedIndex == 1)
 				 {
-					 lblSalesReceiptSelect->Visible = true;
-					 cmbSalesReceiptSelect->Visible = true;
-					 lblSalesProductSelect->Visible = true;
-					 cmbSalesProductSelect->Visible = true;
 					 lblSaleProductQuantity->Visible = true;
 					 txtSalesProductQuantity->Visible = true;
 					 lblSalesProductDiscount->Visible = true;
-					 txtSalesProductDiscount->Visible = true;
-					 btnSalesAddProduct->Visible = true;
-					 lstSalesProducts->Visible = true;
-					 btnSalesRemoveProduct->Visible = true;
-					 dtSalesReceiptDate->Visible = true;
-					 btnSalesCreateReceipt->Visible = false;
+					txtSalesProductDiscount->Visible = true;
+					 btnSalesAddProduct->Visible = false;
 					 btnSalesModify->Visible = true;
-				 }
+					 
+					 lblSalesProductSelect->Visible = true;
+					 cmbSalesProductSelect->Visible = true;
+					 lblSalesReceiptSelect->Visible = true;
+					 cmbSalesReceiptSelect->Visible = true;
+
+					 // disables textboxes and modify button
+					 txtSalesProductQuantity->Enabled = false;
+					 txtSalesProductDiscount->Enabled = false;
+					 btnSalesModify->Enabled = false;
+
+					 // clear combobox
+					 cmbSalesProductSelect->Items->Clear();
+					 
+					 cmbSalesReceiptSelect->Items->Clear();
+					 // currentRow string
+					 System::String ^ currentRow;
+
+					 // vector to contain the sales and receipt files content
+					 vector<string> salesFile;
+					 vector<string> receiptFile;
+					 // retrieve vector containing contents of sales and receipt files
+					 salesFile = returnFile("textFiles/sales.txt");
+					 receiptFile = returnFile("textFiles/receipt.txt");
+					 // insert contents of sales file into combobox
+					 for(int i = 0; i < salesFile.size(); i++)
+					 {
+						 currentRow = gcnew String (salesFile[i].c_str());
+						 cmbSalesProductSelect->Items->Add(currentRow);
+					 }
+
+					  for(int i = 0; i < receiptFile.size(); i++)
+					 {
+						 currentRow = gcnew String (receiptFile[i].c_str());
+						 cmbSalesReceiptSelect->Items->Add(currentRow);
+					 }
+						 
+				 } 
 			 }
 
 			 /// \brief Changes the visibility of certain components for the invoice tab based on the user selected function
@@ -1400,6 +1443,106 @@ namespace InventoryManagement {
 				 txtCategoryName->Enabled = false;
 				 txtCategoryDescription->Enabled = false;
 				 btnCategoryModify->Enabled = false;
+				 delete cat;
+			 }
+private: System::Void cmbSalesSelect_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+				 // enable textboxes and modify button
+				 txtSalesProductQuantity->Enabled = true;
+				 txtSalesProductDiscount->Enabled = true;
+				 btnSalesModify->Enabled = true;
+
+				 // string containing contents of the selection in the combobox
+				 System::String^ sales1 = cmbSalesProductSelect->SelectedItem->ToString();
+				 
+				 System::String^ sales2 = cmbSalesReceiptSelect->SelectedItem->ToString();
+				 // position of delimiter one
+				 int delimiter = sales1->IndexOf("|");
+				 //position of delimiter two
+				 int delimiter2 = sales1->IndexOf("|", delimiter + 1);
+				 
+				 int delimiter3 = sales1->IndexOf("|", delimiter2 + 1);
+				 // string containing quantity sold from the combobox
+				 System::String ^ qSold = sales1->Substring(delimiter+1, delimiter2-delimiter-1);
+			 
+				 // placing quantoty sold string into textbox
+				 txtSalesProductQuantity->Text = qSold;
+
+				 // string containing discount from the combobox
+				 System::String ^ disc = sales1->Substring(delimiter3+1);
+
+				 // placing discount string into textbox
+				 txtSalesProductDiscount->Text = disc;
+
+			 }
+	private: System::Void btnSalesModify_Click(System::Object^  sender, System::EventArgs^  e) {
+				 // create instance of sales()
+				 Table sale = new Sales();
+				 // string for contents of selction in drop box
+				 System::String^ sales1 = cmbSalesProductSelect->SelectedItem->ToString();
+				 
+				 System::String^ sales2 = cmbSalesReceiptSelect->SelectedItem->ToString();
+				 // position of first delimiter
+				 int delimiter1 = sales1->IndexOf("|");
+			
+			// assigns the second delimiter position
+			int delimiter2 = sales1->IndexOf("|", delimiter1+1);
+			
+			// assigns the third delimiter position
+			int delimiter3 = sales1->IndexOf("|", delimiter2+1);
+				 
+			 int delimiter4 = sales2->IndexOf("|");
+			
+			// assigns the second delimiter position
+			int delimiter5 = sales2->IndexOf("|", delimiter1+1);
+			
+			// assigns the third delimiter position
+			int delimiter6 = sales2->IndexOf("|", delimiter2+1);	 // string for sales ID
+				 
+				 System::String ^ salesID = sales1->Substring(0,delimiter1);
+				 
+				 System::String ^ receiptID = sales2->Substring(0,delimiter1);
+				 // convert System::String to std::string
+				 string productIDstring(marshal_as<std::string>(salesID));
+				 
+				 string receiptIDstring(marshal_as<std::string>(receiptID));
+
+				 string qSoldString(marshal_as<std::string>(txtSalesProductQuantity->Text->ToString()));
+				 string discString(marshal_as<std::string>(txtSalesProductDiscount->Text->ToString()));
+
+				 // perform sales::modify function
+				 		 
+				 sale->modifyRow(productIDstring,"quantity_sold",qSoldString);
+				 // perform sales::modify function
+				 sale->modifyRow(productIDstring,"discount",discString);
+				 
+				 // clear text boxes
+				 txtSalesProductQuantity->Text = "";
+				txtSalesProductDiscount->Text = "";
+
+				 // clear combobox
+				 cmbSalesProductSelect->Items->Clear();
+				 
+
+				 // currentRow string
+				 System::String ^ currentRow;
+
+				 // vector to contain the sales file contents
+				 vector<string> salesFile;
+				 // retrieve vector containing contents of sales file
+				 salesFile = returnFile("textFiles/sales.txt");
+
+				 // insert contents of sales file into combobox
+				 for(int i = 0; i < salesFile.size(); i++)
+				 {
+					 currentRow = gcnew String (salesFile[i].c_str());
+					 cmbSalesProductSelect->Items->Add(currentRow);
+				 }
+
+				 // disable textboxes and modify button
+				 txtSalesProductQuantity->Enabled = false;
+				 txtSalesProductDiscount->Enabled = false;
+				 btnSalesModify->Enabled = false;
+				 delete sale;
 			 }
 	};
 }

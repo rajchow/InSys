@@ -81,7 +81,7 @@ string SalesSummary :: search(string columnName, string valueToFind) throw (Does
 			receiptID = rowReceive.substr(0, delimiter);
 
 			// assigns string sales ID with data in the row
-			salesID = rowReceive.substr(delimiter+1, delimiter2-2);
+			salesID = rowReceive.substr(delimiter+1);
 			// checks if value to find is equal to the salesID 
 		
 			if(columnName == "salesID" && 
