@@ -1,9 +1,12 @@
 #pragma once
 #include "TableInterface.h"
 #include "Category.h"
+#include <msclr/marshal.h>
+#include <msclr/marshal_cppstd.h>
 
 namespace InventoryManagement {
 
+	using namespace msclr::interop;
 	using namespace System;
 	using namespace System::ComponentModel;
 	using namespace System::Collections;
@@ -35,6 +38,42 @@ namespace InventoryManagement {
 			{
 				delete components;
 			}
+		}
+	private:
+		vector<string> returnFile(string fileName){
+			// vector to store each row of the file
+			vector<string> fileVect;
+
+			ifstream inFile;
+
+			// opens the connection to the textFile
+			inFile.open(fileName);
+
+			// string to contain current row
+			string rowReceive;
+
+			// ensures that categoryInFile is open
+			if(inFile.is_open())
+			{
+				// while loop continues as long as there is another line in the text file
+				while(inFile.good())
+				{
+					// retrieves the next line in categoryInFile and assigns it to the string rowReceive
+					getline(inFile, rowReceive);
+
+					// ensures that the row contains data
+					if(!rowReceive.empty())
+					{
+						// adds the row to the vector
+						fileVect.push_back(rowReceive);
+					}
+				}
+			}
+
+			// close connection to file
+			inFile.close();
+
+			return fileVect;
 		}
 	private: System::Windows::Forms::TabControl^  tbInventorySystem;
 	protected: 
@@ -118,6 +157,11 @@ namespace InventoryManagement {
 	private: System::Windows::Forms::ComboBox^  cmbInvoiceProductSelect;
 	private: System::Windows::Forms::Label^  lblInvoiceFunction;
 	private: System::Windows::Forms::ComboBox^  cmbInvoiceFunction;
+	private: System::Windows::Forms::TextBox^  txtCategorySearch;
+	private: System::Windows::Forms::ComboBox^  cmbCategorySearchBy;
+	private: System::Windows::Forms::Label^  lblCategorySearchBy;
+	private: System::Windows::Forms::Button^  btnCategorySearch;
+	private: System::Windows::Forms::Label^  lblCategorySearchInfo;
 
 
 	private:
@@ -135,6 +179,11 @@ namespace InventoryManagement {
 		{
 			this->tbInventorySystem = (gcnew System::Windows::Forms::TabControl());
 			this->tpCategory = (gcnew System::Windows::Forms::TabPage());
+			this->btnCategorySearch = (gcnew System::Windows::Forms::Button());
+			this->lblCategorySearchInfo = (gcnew System::Windows::Forms::Label());
+			this->txtCategorySearch = (gcnew System::Windows::Forms::TextBox());
+			this->cmbCategorySearchBy = (gcnew System::Windows::Forms::ComboBox());
+			this->lblCategorySearchBy = (gcnew System::Windows::Forms::Label());
 			this->btnCategoryDelete = (gcnew System::Windows::Forms::Button());
 			this->btnCategoryModify = (gcnew System::Windows::Forms::Button());
 			this->lblCategorySelect = (gcnew System::Windows::Forms::Label());
@@ -224,6 +273,11 @@ namespace InventoryManagement {
 			// 
 			// tpCategory
 			// 
+			this->tpCategory->Controls->Add(this->btnCategorySearch);
+			this->tpCategory->Controls->Add(this->lblCategorySearchInfo);
+			this->tpCategory->Controls->Add(this->txtCategorySearch);
+			this->tpCategory->Controls->Add(this->cmbCategorySearchBy);
+			this->tpCategory->Controls->Add(this->lblCategorySearchBy);
 			this->tpCategory->Controls->Add(this->btnCategoryDelete);
 			this->tpCategory->Controls->Add(this->btnCategoryModify);
 			this->tpCategory->Controls->Add(this->lblCategorySelect);
@@ -243,6 +297,49 @@ namespace InventoryManagement {
 			this->tpCategory->Text = L"Category";
 			this->tpCategory->UseVisualStyleBackColor = true;
 			// 
+			// btnCategorySearch
+			// 
+			this->btnCategorySearch->Location = System::Drawing::Point(6, 168);
+			this->btnCategorySearch->Name = L"btnCategorySearch";
+			this->btnCategorySearch->Size = System::Drawing::Size(75, 23);
+			this->btnCategorySearch->TabIndex = 15;
+			this->btnCategorySearch->Text = L"Search";
+			this->btnCategorySearch->UseVisualStyleBackColor = true;
+			// 
+			// lblCategorySearchInfo
+			// 
+			this->lblCategorySearchInfo->AutoSize = true;
+			this->lblCategorySearchInfo->Location = System::Drawing::Point(7, 113);
+			this->lblCategorySearchInfo->Name = L"lblCategorySearchInfo";
+			this->lblCategorySearchInfo->Size = System::Drawing::Size(142, 13);
+			this->lblCategorySearchInfo->TabIndex = 14;
+			this->lblCategorySearchInfo->Text = L"Enter Information for Search:";
+			// 
+			// txtCategorySearch
+			// 
+			this->txtCategorySearch->Location = System::Drawing::Point(7, 137);
+			this->txtCategorySearch->Name = L"txtCategorySearch";
+			this->txtCategorySearch->Size = System::Drawing::Size(490, 20);
+			this->txtCategorySearch->TabIndex = 13;
+			// 
+			// cmbCategorySearchBy
+			// 
+			this->cmbCategorySearchBy->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
+			this->cmbCategorySearchBy->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"ID", L"Name", L"Description"});
+			this->cmbCategorySearchBy->Location = System::Drawing::Point(7, 75);
+			this->cmbCategorySearchBy->Name = L"cmbCategorySearchBy";
+			this->cmbCategorySearchBy->Size = System::Drawing::Size(114, 21);
+			this->cmbCategorySearchBy->TabIndex = 12;
+			// 
+			// lblCategorySearchBy
+			// 
+			this->lblCategorySearchBy->AutoSize = true;
+			this->lblCategorySearchBy->Location = System::Drawing::Point(7, 55);
+			this->lblCategorySearchBy->Name = L"lblCategorySearchBy";
+			this->lblCategorySearchBy->Size = System::Drawing::Size(59, 13);
+			this->lblCategorySearchBy->TabIndex = 11;
+			this->lblCategorySearchBy->Text = L"Search By:";
+			// 
 			// btnCategoryDelete
 			// 
 			this->btnCategoryDelete->Location = System::Drawing::Point(6, 108);
@@ -260,6 +357,7 @@ namespace InventoryManagement {
 			this->btnCategoryModify->TabIndex = 9;
 			this->btnCategoryModify->Text = L"Modify";
 			this->btnCategoryModify->UseVisualStyleBackColor = true;
+			this->btnCategoryModify->Click += gcnew System::EventHandler(this, &MyForm::btnCategoryModify_Click);
 			// 
 			// lblCategorySelect
 			// 
@@ -330,11 +428,12 @@ namespace InventoryManagement {
 			this->cmbCategorySelect->Name = L"cmbCategorySelect";
 			this->cmbCategorySelect->Size = System::Drawing::Size(491, 21);
 			this->cmbCategorySelect->TabIndex = 1;
+			this->cmbCategorySelect->SelectedIndexChanged += gcnew System::EventHandler(this, &MyForm::cmbCategorySelect_SelectedIndexChanged);
 			// 
 			// cmbCategoryFunction
 			// 
 			this->cmbCategoryFunction->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
-			this->cmbCategoryFunction->Items->AddRange(gcnew cli::array< System::Object^  >(3) {L"Add", L"Modify", L"Delete"});
+			this->cmbCategoryFunction->Items->AddRange(gcnew cli::array< System::Object^  >(4) {L"Add", L"Modify", L"Delete", L"Search"});
 			this->cmbCategoryFunction->Location = System::Drawing::Point(7, 27);
 			this->cmbCategoryFunction->Name = L"cmbCategoryFunction";
 			this->cmbCategoryFunction->Size = System::Drawing::Size(114, 21);
@@ -853,6 +952,7 @@ namespace InventoryManagement {
 			this->exitToolStripMenuItem->Name = L"exitToolStripMenuItem";
 			this->exitToolStripMenuItem->Size = System::Drawing::Size(92, 22);
 			this->exitToolStripMenuItem->Text = L"Exit";
+			this->exitToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::exitToolStripMenuItem_Click);
 			// 
 			// helpToolStripMenuItem
 			// 
@@ -913,6 +1013,11 @@ namespace InventoryManagement {
 				 btnCategoryDelete->Visible = false;
 				 lblCategorySelect->Visible = false;
 				 cmbCategorySelect->Visible = false;
+				 lblCategorySearchBy->Visible = false;
+				 cmbCategorySearchBy->Visible = false;
+				 lblCategorySearchInfo->Visible = false;
+				 txtCategorySearch->Visible = false;
+				 btnCategorySearch->Visible = false;
 
 				 // Product: all components (except Function label and combobox selector) set to invisible
 				 lblProductSelect->Visible = false;
@@ -967,6 +1072,7 @@ namespace InventoryManagement {
 			 /// SelectedIndex == 0 : "Add"
 			 /// SelectedIndex == 1 : "Modify"
 			 /// SelectedIndex == 2 : "Delete"
+			 /// SelectedIndex == 3 : "Search"
 	private: System::Void cmbCategoryFunction_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 
 				 if(cmbCategoryFunction->SelectedIndex == 0)
@@ -989,6 +1095,21 @@ namespace InventoryManagement {
 					 lblCategorySelect->Visible = false;
 					 // Combobox for Category selection set to invisible
 					 cmbCategorySelect->Visible = false;
+					 // Label "Search By:" set to invisible
+					 lblCategorySearchBy->Visible = false;
+					 // Combobox for category "search by" set to invisible
+					 cmbCategorySearchBy->Visible = false;
+					 // Label "Enter Information for Search:" set to invisible
+					 lblCategorySearchInfo->Visible = false;
+					 // Text box for category search set to invisible
+					 txtCategorySearch->Visible = false;
+					 // Button for search set to invisible
+					 btnCategorySearch->Visible = false;
+
+					 // enables textboxes
+					 txtCategoryName->Enabled = true;
+					 txtCategoryDescription->Enabled = true;
+
 				 } else if(cmbCategoryFunction->SelectedIndex == 1)
 				 {
 					 lblCategoryName->Visible = true;
@@ -1000,6 +1121,35 @@ namespace InventoryManagement {
 					 btnCategoryDelete->Visible = false;
 					 lblCategorySelect->Visible = true;
 					 cmbCategorySelect->Visible = true;
+					 lblCategorySearchBy->Visible = false;
+					 cmbCategorySearchBy->Visible = false;
+					 lblCategorySearchInfo->Visible = false;
+					 txtCategorySearch->Visible = false;
+					 btnCategorySearch->Visible = false;
+
+					 // disables textboxes and modify button
+					 txtCategoryName->Enabled = false;
+					 txtCategoryDescription->Enabled = false;
+					 btnCategoryModify->Enabled = false;
+
+					 // clear combobox
+					 cmbCategorySelect->Items->Clear();
+
+					 // currentRow string
+					 System::String ^ currentRow;
+
+					 // vector to contain the category file contents
+					 vector<string> categoriesFile;
+					 // retrieve vector containing contents of category file
+					 categoriesFile = returnFile("textFiles/category.txt");
+
+					 // insert contents of category file into combobox
+					 for(int i = 0; i < categoriesFile.size(); i++)
+					 {
+						 currentRow = gcnew String (categoriesFile[i].c_str());
+						 cmbCategorySelect->Items->Add(currentRow);
+					 }
+
 				 } else if(cmbCategoryFunction->SelectedIndex == 2)
 				 {
 					 lblCategoryName->Visible = false;
@@ -1011,6 +1161,27 @@ namespace InventoryManagement {
 					 btnCategoryDelete->Visible = true;
 					 lblCategorySelect->Visible = true;
 					 cmbCategorySelect->Visible = true;
+					 lblCategorySearchBy->Visible = false;
+					 cmbCategorySearchBy->Visible = false;
+					 lblCategorySearchInfo->Visible = false;
+					 txtCategorySearch->Visible = false;
+					 btnCategorySearch->Visible = false;
+				 } else if(cmbCategoryFunction->SelectedIndex == 3)
+				 {
+					 lblCategoryName->Visible = false;
+					 txtCategoryName->Visible = false;
+					 lblCategoryDescription->Visible = false;
+					 txtCategoryDescription->Visible = false;
+					 btnCategoryAdd->Visible = false;
+					 btnCategoryModify->Visible = false;
+					 btnCategoryDelete->Visible = false;
+					 lblCategorySelect->Visible = false;
+					 cmbCategorySelect->Visible = false;
+					 lblCategorySearchBy->Visible = true;
+					 cmbCategorySearchBy->Visible = true;
+					 lblCategorySearchInfo->Visible = true;
+					 txtCategorySearch->Visible = true;
+					 btnCategorySearch->Visible = true;
 				 }
 
 			 }
@@ -1150,6 +1321,85 @@ namespace InventoryManagement {
 					 btnInvoiceCreateInvoice->Visible = false;
 					 btnInvoiceModify->Visible = true;
 				 }
+			 }
+	private: System::Void exitToolStripMenuItem_Click(System::Object^  sender, System::EventArgs^  e) {
+				 Application::Exit();
+			 }
+	private: System::Void cmbCategorySelect_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+				 // enable textboxes and modify button
+				 txtCategoryName->Enabled = true;
+				 txtCategoryDescription->Enabled = true;
+				 btnCategoryModify->Enabled = true;
+
+				 // string containing contents of the selection in the combobox
+				 System::String^ category = cmbCategorySelect->SelectedItem->ToString();
+
+				 // position of delimiter one
+				 int delimiter1 = category->IndexOf("|");
+				 //position of delimiter two
+				 int delimiter2 = category->IndexOf("|", delimiter1 + 1);
+
+				 // string containing name from the combobox
+				 System::String ^ name = category->Substring(delimiter2 + 1);
+
+				 // placing name string into textbox
+				 txtCategoryName->Text = name;
+
+				 // string containing description from the combobox
+				 System::String ^ description = category->Substring(delimiter1 + 1, delimiter2 - delimiter1 - 1);
+
+				 // placing description string into textbox
+				 txtCategoryDescription->Text = description;
+
+			 }
+	private: System::Void btnCategoryModify_Click(System::Object^  sender, System::EventArgs^  e) {
+				 // create instance of Category()
+				 Table cat = new Category();
+
+				 // string for contents of selction in drop box
+				 System::String^ category = cmbCategorySelect->SelectedItem->ToString();
+				 // position of first delimiter
+				 int delimiter1 = category->IndexOf("|");
+
+				 // string for category ID
+				 System::String ^ categoryID = category->Substring(0,delimiter1);
+
+				 // convert System::String to std::string
+				 string categoryIDstring(marshal_as<std::string>(categoryID));
+				 string categoryNameString(marshal_as<std::string>(txtCategoryName->Text->ToString()));
+				 string categoryDescriptionString(marshal_as<std::string>(txtCategoryDescription->Text->ToString()));
+
+				 // perform category::modify function
+				 cat->modifyRow(categoryIDstring,"name",categoryNameString);
+				 // perform category::modify function
+				 cat->modifyRow(categoryIDstring,"description",categoryDescriptionString);
+
+				 // clear text boxes
+				 txtCategoryDescription->Text = "";
+				 txtCategoryName->Text = "";
+
+				 // clear combobox
+				 cmbCategorySelect->Items->Clear();
+
+				 // currentRow string
+				 System::String ^ currentRow;
+
+				 // vector to contain the category file contents
+				 vector<string> categoriesFile;
+				 // retrieve vector containing contents of category file
+				 categoriesFile = returnFile("textFiles/category.txt");
+
+				 // insert contents of category file into combobox
+				 for(int i = 0; i < categoriesFile.size(); i++)
+				 {
+					 currentRow = gcnew String (categoriesFile[i].c_str());
+					 cmbCategorySelect->Items->Add(currentRow);
+				 }
+
+				 // disable textboxes and modify button
+				 txtCategoryName->Enabled = false;
+				 txtCategoryDescription->Enabled = false;
+				 btnCategoryModify->Enabled = false;
 			 }
 	};
 }

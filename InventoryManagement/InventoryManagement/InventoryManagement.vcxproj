@@ -90,6 +90,10 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Product.h" />
+    <ClInclude Include="Receipt.h" />
+    <ClInclude Include="Returns.h" />
+    <ClInclude Include="Sales.h" />
+    <ClInclude Include="SalesSummary.h" />
     <ClInclude Include="Summary.h" />
     <ClInclude Include="TableInterface.h" />
   </ItemGroup>
@@ -114,6 +118,10 @@
       <ExceptionHandling Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Async</ExceptionHandling>
     </ClCompile>
     <ClCompile Include="Product.cpp" />
+    <ClCompile Include="Receipt.cpp" />
+    <ClCompile Include="Returns.cpp" />
+    <ClCompile Include="Sales.cpp" />
+    <ClCompile Include="SalesSummary.cpp" />
     <ClCompile Include="Summary.cpp" />
   </ItemGroup>
   <ItemGroup>

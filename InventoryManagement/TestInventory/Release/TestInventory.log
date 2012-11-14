@@ -1,0 +1,42 @@
+﻿Build started 11/13/2012 3:09:20 PM.
+     1>Project "C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\TestInventory\TestInventory.vcxproj" on node 3 (Build target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"stdafx.h" /Fp"Release\TestInventory.pch" /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt stdafx.cpp
+         stdafx.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _WINDLL /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Release\TestInventory.pch" /Fo"Release\\" /Fd"Release\vc110.pdb" /Gd /TP /analyze- /FC /errorReport:prompt invoiceItemTest.cpp invoiceItemWithSummaryTests.cpp invoiceTests.cpp productTests.cpp ReceiptTests.cpp SalesSummarytests.cpp SalesTests.cpp categoryTests.cpp summaryTest.cpp
+         invoiceItemTest.cpp
+         invoiceItemWithSummaryTests.cpp
+         invoiceTests.cpp
+         productTests.cpp
+         ReceiptTests.cpp
+         SalesSummarytests.cpp
+         SalesTests.cpp
+         categoryTests.cpp
+         summaryTest.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Release\TestInventory.dll" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\UnitTest\lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Release\TestInventory.pdb" /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Release\TestInventory.lib" /MACHINE:X86 /SAFESEH /DLL Release\invoiceItemTest.obj
+         Release\invoiceItemWithSummaryTests.obj
+         Release\invoiceTests.obj
+         Release\productTests.obj
+         Release\ReceiptTests.obj
+         Release\SalesSummarytests.obj
+         Release\SalesTests.obj
+         Release\stdafx.obj
+         Release\categoryTests.obj
+         Release\summaryTest.obj
+     1>LINK : warning LNK4075: ignoring '/INCREMENTAL' due to '/LTCG' specification
+            Creating library C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Release\TestInventory.lib and object C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Release\TestInventory.exp
+     1>invoiceItemTest.obj : error LNK2001: unresolved external symbol "public: __thiscall InvoiceItem::InvoiceItem(void)" (??0InvoiceItem@@QAE@XZ)
+     1>invoiceItemWithSummaryTests.obj : error LNK2001: unresolved external symbol "public: __thiscall Summary::Summary(void)" (??0Summary@@QAE@XZ)
+     1>invoiceTests.obj : error LNK2001: unresolved external symbol "public: __thiscall Invoice::Invoice(void)" (??0Invoice@@QAE@XZ)
+     1>productTests.obj : error LNK2001: unresolved external symbol "public: __thiscall Product::Product(void)" (??0Product@@QAE@XZ)
+     1>ReceiptTests.obj : error LNK2001: unresolved external symbol "public: __thiscall Receipt::Receipt(void)" (??0Receipt@@QAE@XZ)
+     1>SalesSummarytests.obj : error LNK2001: unresolved external symbol "public: __thiscall SalesSummary::SalesSummary(void)" (??0SalesSummary@@QAE@XZ)
+     1>SalesTests.obj : error LNK2001: unresolved external symbol "public: __thiscall Sales::Sales(void)" (??0Sales@@QAE@XZ)
+     1>categoryTests.obj : error LNK2001: unresolved external symbol "public: __thiscall Category::Category(void)" (??0Category@@QAE@XZ)
+     1>C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\Release\TestInventory.dll : fatal error LNK1120: 8 unresolved externals
+     1>Done Building Project "C:\Users\Michael\Documents\Visual Studio 2012\Projects\InventoryManagement\TestInventory\TestInventory.vcxproj" (Build target(s)) -- FAILED.
+
+Build FAILED.
+
+Time Elapsed 00:00:03.07
