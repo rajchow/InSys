@@ -148,7 +148,7 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}
@@ -160,7 +160,7 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}
@@ -172,7 +172,7 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}
@@ -184,7 +184,7 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}
@@ -196,7 +196,7 @@ string Product :: search(string columnName, string valueToFind) throw(DoesNotExi
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}

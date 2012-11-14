@@ -61,7 +61,7 @@ namespace TestInventory
 			Logger::WriteMessage(p);
 
 			// Asserts what is expected with what is actually returned
-			Assert::AreEqual("1425|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\n", productReturned.c_str());
+			Assert::AreEqual("1425|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\r\n", productReturned.c_str());
 		}
 
 		/// \brief Test that the product class can successfully search by category_id
@@ -75,7 +75,7 @@ namespace TestInventory
 			string productReturned;
 
 			// string to store the expected return
-			string expectedReturn = "1425|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\n2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n";
+			string expectedReturn = "1425|1|24 pack 355mL cans of Budget Brand Cola|BBCola24|5.98\r\n2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\r\n";
 
 			productReturned = prod->search("category_id", "1");
 
@@ -101,7 +101,7 @@ namespace TestInventory
 			p = productReturned.c_str();
 			Logger::WriteMessage(p);
 
-			Assert::AreEqual("2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n", productReturned.c_str());
+			Assert::AreEqual("2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\r\n", productReturned.c_str());
 		}
 
 		/// \brief Test that the product class can successfully search by name
@@ -117,7 +117,7 @@ namespace TestInventory
 			p = productReturned.c_str();
 			Logger::WriteMessage(p);
 
-			Assert::AreEqual("2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n", productReturned.c_str());
+			Assert::AreEqual("2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\r\n", productReturned.c_str());
 		}
 
 		/// \brief Test that the product class can successfully search by price
@@ -133,7 +133,7 @@ namespace TestInventory
 			p = productReturned.c_str();
 			Logger::WriteMessage(p);
 
-			Assert::AreEqual("2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\n", productReturned.c_str());
+			Assert::AreEqual("2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49\r\n", productReturned.c_str());
 		}
 
 		/// \brief Test that the product::search function throws an exception when searching for a value that does not exist
@@ -203,7 +203,7 @@ namespace TestInventory
 			string productReturned;
 
 			// string containing the expected information to be received from the search
-			string productExpected = "1000|2|550g bag Budget Brand All Dressed Potato Chips|BBAllDressedLarge|4.98\n";
+			string productExpected = "1000|2|550g bag Budget Brand All Dressed Potato Chips|BBAllDressedLarge|4.98\r\n";
 
 			// vector to contain the information for the required columns for a new entry
 			vector<string> prodVector;
@@ -266,7 +266,7 @@ namespace TestInventory
 			string returnedString;
 			
 			// string containing the expected information to be received from the search
-			string expectedString = "1425|1|Description Modified|Name Modified|1.11\n";
+			string expectedString = "1425|1|Description Modified|Name Modified|1.11\r\n";
 
 			// call the product modify function to modify the description
 			prod->modifyRow("1425","description","Description Modified");

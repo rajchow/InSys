@@ -1,3 +1,5 @@
-1425|1|Description Modified|Name Modified|1.11
-2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49
 1002|2|250g bag Budget Brand Regular Tortilla Chips|BBRegTortillaChip|2.24
+2224|4|Solid oak end table with double doors|End Table|199.99
+2225|4|Vinyl wall decal portraying a leafless tree|Tree Wall Art|24.98
+2543|1|6 pack 710mL bottle Budget Brand Root Beer|BBRootBeer6Bottle|3.49
+8876|3|4 - 4oz Halibut Steaks|Halibut Steaks|14.49

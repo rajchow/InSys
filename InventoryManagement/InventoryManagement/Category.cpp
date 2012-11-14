@@ -137,7 +137,7 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive;
 
 				resultFound = true;
 			}
@@ -149,7 +149,7 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}
@@ -160,7 +160,7 @@ string Category :: search(string columnName, string valueToFind) throw(DoesNotEx
 			{
 				// concatenates the row that matched the search arguments to the string returnString 
 				// along with a line break at the end
-				returnString += rowReceive + "\n";
+				returnString += rowReceive + "\r\n";
 
 				resultFound = true;
 			}

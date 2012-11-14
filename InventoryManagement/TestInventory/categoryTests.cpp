@@ -62,7 +62,7 @@ namespace TestInventory
 			Logger::WriteMessage(p);
 
 			// Asserts what is expected with what is actually returned
-			Assert::AreEqual("2|ready for your enjoyment|hot foods\n", categoryReturned.c_str());
+			Assert::AreEqual("2|ready for your enjoyment|hot foods", categoryReturned.c_str());
 		}
 
 		/// \brief Test if Category can search by description
@@ -78,7 +78,7 @@ namespace TestInventory
 			p = categoryReturned.c_str();
 			Logger::WriteMessage(p);
 
-			Assert::AreEqual("3|underwater delicacies|seafood\n", categoryReturned.c_str());
+			Assert::AreEqual("3|underwater delicacies|seafood\r\n", categoryReturned.c_str());
 
 		}
 
@@ -95,7 +95,7 @@ namespace TestInventory
 			p = categoryReturned.c_str();
 			Logger::WriteMessage(p);
 
-			Assert::AreEqual("3|underwater delicacies|seafood\n", categoryReturned.c_str());
+			Assert::AreEqual("3|underwater delicacies|seafood\r\n", categoryReturned.c_str());
 
 		}
 
@@ -127,7 +127,7 @@ namespace TestInventory
 			string categoryReturned;
 
 			// string containing the expected information to be received from the search
-			string categoryExpected = "4|testDescription|testName\n";
+			string categoryExpected = "4|testDescription|testName";
 
 			// vector to contain the information for the required columns for a new entry
 			vector<string> catVector;
@@ -185,7 +185,7 @@ namespace TestInventory
 			string returnedString;
 			
 			// string containing the expected information to be received from the search
-			string expectedString = "1|Description Modified|Name Modified\n";
+			string expectedString = "1|Description Modified|Name Modified";
 
 			// call the category modify function to modify the description
 			cat->modifyRow("1","description","Description Modified");

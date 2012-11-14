@@ -112,11 +112,11 @@ string Sales :: search(string columnName, string valueToFind)throw (DoesNotExist
 			salesID = rowReceive.substr(0,delimiter);
 
 			// assigns string quantity sold with data in the row
-			qSold = rowReceive.substr(delimiter+1, delimiter2-delimiter-1);
+			qSold = rowReceive.substr(delimiter+1, delimiter2-2);
 
 			
 			// assigns string productId with data in the row
-			productId = rowReceive.substr(delimiter2+1, delimiter3-delimiter2-1);
+			productId = rowReceive.substr(delimiter2+1, delimiter3-4);
 			// assigns string discount with data in the row
 			disc = rowReceive.substr(delimiter3+1);
 		
@@ -204,12 +204,14 @@ void Sales :: modifyRow(string valueToFind, string columnNameToModify, string va
 		// assigns string sales ID with data in the row
 			salesID = rowReceive.substr(0,delimiter);
 
-			qSold = rowReceive.substr(delimiter+1, delimiter2-delimiter-1);
-						
-			// assigns string productId with data in the row
-			productId = rowReceive.substr(delimiter2+1, delimiter3-delimiter2-1);
+			// assigns string quantity sold with data in the row
+			qSold = rowReceive.substr(delimiter+1, delimiter2-2);
+
+			// assigns string product ID with data in the row
+			productId = rowReceive.substr(delimiter2+1, delimiter3-4);
+			 
 			// assigns string discount with data in the row
-			disc = rowReceive.substr(delimiter3+1);
+			disc= rowReceive.substr(delimiter3+1);
 			
 			// checks if the value to find does not match
 			if( atoi(salesID.c_str()) != atoi(valueToFind.c_str())) 

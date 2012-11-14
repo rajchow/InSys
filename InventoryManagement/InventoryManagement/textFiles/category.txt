@@ -1,3 +1,6 @@
-1|Delicious beverages|Snacks
-2|ready for your enjoyment|hot foods
+1|Delicious beverages|Drinks
+2|Vegetables and Fruit|Produce
 3|salmon, trout, halibut, etc|fish
+4|Furnishings, Art, Mirrors, Accessories, etc|Home Decor
+5|The lethal radioactive section of your local supermarket|Radioactive
+6|Carbonated beverages|Pop
